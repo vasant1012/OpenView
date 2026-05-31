@@ -24,7 +24,7 @@ export function AppHeader() {
             <Sparkles className="h-4 w-4" />
           </span>
           <span className="flex flex-col leading-tight">
-            <span className="text-[10px] font-medium uppercase tracking-widest text-muted-foreground">Tavant AI</span>
+            <span className="text-[10px] font-medium uppercase tracking-widest text-muted-foreground">Triogenic AI</span>
             <span className="text-sm font-semibold text-foreground">OpenView</span>
           </span>
         </Link>

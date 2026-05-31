@@ -26,7 +26,7 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Home · OpenView" },
-      { name: "description", content: "Tavant AI OpenView — your hub for AI initiatives, reusable assets, and team activity." },
+      { name: "description", content: "Triogenic AI OpenView — your hub for AI initiatives, reusable assets, and team activity." },
     ],
   }),
   component: Home,
