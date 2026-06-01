@@ -11,6 +11,7 @@ import {
 import appCss from "../styles.css?url";
 import { AppHeader } from "@/components/openview/AppHeader";
 import { ThemeProvider } from "@/components/openview/ThemeProvider";
+import { SITE } from "@/data/site";
 
 function NotFoundComponent() {
   return (
@@ -74,11 +75,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "OpenView — Triogenic AI Initiative Hub" },
-      { name: "description", content: "Centralized hub to explore AI initiatives, reusable assets, and leadership insights." },
-      { name: "author", content: "Triogenic" },
-      { property: "og:title", content: "OpenView — Triogenic AI Initiative Hub" },
-      { property: "og:description", content: "Explore AI initiatives, reusable assets, and team insights in one place." },
+      { name: "color-scheme", content: "light dark" },
+      { title: SITE.title },
+      { name: "description", content: SITE.description },
+      { name: "author", content: SITE.org },
+      { property: "og:title", content: SITE.title },
+      { property: "og:description", content: SITE.description },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],
@@ -95,10 +97,24 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   errorComponent: ErrorComponent,
 });
 
+// Blocking script string — runs synchronously before first paint to prevent FOUC.
+// Must be a plain string so it is not transformed by the bundler.
+const themeScript = `(function(){
+  try {
+    var t = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var resolved = (t === 'dark' || (!t && prefersDark)) ? 'dark' : 'light';
+    document.documentElement.classList.add(resolved);
+    document.documentElement.style.colorScheme = resolved;
+  } catch(e) {}
+})();`;
+
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
+        {/* Blocking theme script — must come before HeadContent/stylesheets */}
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <HeadContent />
       </head>
       <body>
