@@ -1,6 +1,8 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-type Theme = "light" | "dark" | "system";
+const VALID_THEMES = ["light", "dark", "system"] as const;
+
+type Theme = (typeof VALID_THEMES)[number];
 
 interface ThemeContextType {
   theme: Theme;
@@ -9,6 +11,10 @@ interface ThemeContextType {
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+
+function isTheme(value: unknown): value is Theme {
+  return typeof value === "string" && VALID_THEMES.includes(value as Theme);
+}
 
 function getSystemTheme(): "light" | "dark" {
   if (typeof window === "undefined") return "light";
@@ -31,13 +37,16 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   // After mount: read localStorage and sync to actual stored preference.
   useEffect(() => {
-    const stored = (localStorage.getItem("theme") as Theme) || "system";
-    setThemeState(stored);
+    const stored = localStorage.getItem("theme");
+    const validated = isTheme(stored) ? stored : "system";
+    console.debug("ThemeProvider: stored theme=", stored, "validated=", validated);
+    setThemeState(validated);
   }, []);
 
   // Whenever theme changes, resolve and apply to <html>.
   useEffect(() => {
     const resolved = theme === "system" ? getSystemTheme() : theme;
+    console.debug("ThemeProvider: applying resolved theme=", resolved, "(theme=", theme, ")");
     setResolvedTheme(resolved);
     applyTheme(resolved);
   }, [theme]);
@@ -51,11 +60,18 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       setResolvedTheme(resolved);
       applyTheme(resolved);
     };
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
+
+    if (typeof mq.addEventListener === "function") {
+      mq.addEventListener("change", handler);
+      return () => mq.removeEventListener("change", handler);
+    }
+
+    mq.addListener(handler);
+    return () => mq.removeListener(handler);
   }, [theme]);
 
   const setTheme = (next: Theme) => {
+    console.debug("ThemeProvider.setTheme ->", next);
     localStorage.setItem("theme", next);
     setThemeState(next);
   };
