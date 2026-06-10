@@ -123,6 +123,7 @@ function AssetDetail() {
             </div>
           </dl>
         </SectionBlock>
+
         <SectionBlock title="Reuse constraints" className="lg:col-span-2">
           <dl className="grid gap-4 sm:grid-cols-2 text-sm">
             <div>

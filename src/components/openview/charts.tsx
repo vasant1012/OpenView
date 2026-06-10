@@ -112,6 +112,7 @@ export function PortfolioFunnel() {
     </div>
   );
 }
+
 export function TopDomainsProduction() {
   const data = getTopDomainsByProduction();
   if (data.length === 0) {
@@ -132,6 +133,7 @@ export function TopDomainsProduction() {
     </ul>
   );
 }
+
 export function ReuseRateTrend() {
   // Placeholder series — rolling reuse rate over 6 quarters
   const series = [22, 28, 34, 41, 47, 54];

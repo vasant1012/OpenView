@@ -25,12 +25,12 @@ export function ProjectCard({ project }: { project: Initiative }) {
   const reuseEffort = getReuseEffort(project);
   const isProduction = project.status === "Production";
   return (
-      <article
+    <article
       className={cn(
         "flex h-full flex-col rounded-xl border bg-card p-5 shadow-[var(--shadow-card)] transition hover:shadow-[var(--shadow-hover)]",
         isProduction && "border-status-success/40 ring-1 ring-status-success/20",
       )}
-      >
+    >
       <header className="mb-3 flex items-start justify-between gap-3">
         <HoverCard openDelay={250}>
           <HoverCardTrigger asChild>

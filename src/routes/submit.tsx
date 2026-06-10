@@ -13,25 +13,6 @@ import {
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
 } from "@/components/ui/select";
 import { Plus, X } from "lucide-react";
-import {
-  SUBMIT_META,
-  SUBMIT_HEADER,
-  SUBMIT_SECTIONS,
-  SUBMIT_FIELDS,
-  REQUIRED_FIELDS,
-  SUBMIT_BUTTONS,
-  STATUS_OPTIONS,
-  PROJECT_TYPE_OPTIONS,
-  DOMAIN_OPTIONS,
-  USE_CASE_OPTIONS,
-  CAPABILITY_OPTIONS,
-  DATA_TYPE_OPTIONS,
-  REUSE_LEVEL_OPTIONS,
-  REUSE_TYPE_OPTIONS,
-  REUSE_EFFORT_OPTIONS,
-  DEMO_OPTIONS,
-  DEPLOYMENT_OPTIONS,
-} from "@/data/submit";
 
 const submitSearch = z.object({
   mode: fallback(z.enum(["new", "update"]), "new").default("new"),
@@ -41,40 +22,45 @@ export const Route = createFileRoute("/submit")({
   validateSearch: zodValidator(submitSearch),
   head: () => ({
     meta: [
-      { title: SUBMIT_META.title },
-      { name: "description", content: SUBMIT_META.description },
+      { title: "Submit or Update · OpenView" },
+      { name: "description", content: "Submit a new AI initiative or update an existing one in OpenView." },
     ],
   }),
   component: SubmitPage,
 });
 
 type FormState = {
-  name: string; status: string; projectType: string; domain: string; owner: string;
-  problem: string; useCase: string; users: string; impact: string;
-  capability: string; models: string; dataType: string;
-  reusable: string; reuseType: string; reuseEffort: string; demo: string;
-  assetLinks: string[]; deployment: string; architecture: string;
+  name: string;
+  status: string;
+  projectType: string;
+  domain: string;
+  owner: string;
+  problem: string;
+  useCase: string;
+  users: string;
+  impact: string;
+  capability: string;
+  models: string;
+  dataType: string;
+  reusable: string;
+  reuseType: string;
+  reuseEffort: string;
+  demo: string;
+  assetLinks: string[];
+  deployment: string;
+  architecture: string;
 };
 
-const Req = () => <span className="text-destructive">*</span>;
+const required: Array<{ key: keyof FormState; label: string }> = [
+  { key: "name", label: "Initiative name" },
+  { key: "owner", label: "Owner" },
+  { key: "status", label: "Status" },
+  { key: "domain", label: "Domain" },
+  { key: "capability", label: "AI Capability" },
+  { key: "reusable", label: "Reusability" },
+];
 
-function SelectField({ options, value, onChange, className }: {
-  options: readonly string[];
-  value: string;
-  onChange: (v: string) => void;
-  className?: string;
-}) {
-  return (
-    <Select value={value} onValueChange={onChange}>
-      <SelectTrigger className={`mt-1 ${className ?? ""}`}>
-        <SelectValue placeholder="Select…" />
-      </SelectTrigger>
-      <SelectContent>
-        {options.map((s) => <SelectItem key={s} value={s}>{s}</SelectItem>)}
-      </SelectContent>
-    </Select>
-  );
-}
+const Req = () => <span className="text-destructive">*</span>;
 
 function SubmitPage() {
   const { mode } = Route.useSearch();
@@ -86,14 +72,13 @@ function SubmitPage() {
     deployment: "", architecture: "",
   });
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
-
   const set = <K extends keyof FormState>(k: K, v: FormState[K]) =>
     setForm((f) => ({ ...f, [k]: v }));
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
     const next: typeof errors = {};
-    for (const r of REQUIRED_FIELDS) if (!String(form[r.key]).trim()) next[r.key] = `${r.label} is required`;
+    for (const r of required) if (!String(form[r.key]).trim()) next[r.key] = `${r.label} is required`;
     setErrors(next);
     if (Object.keys(next).length) {
       toast.error(`Please complete ${Object.keys(next).length} required field${Object.keys(next).length === 1 ? "" : "s"}.`);
@@ -108,123 +93,152 @@ function SubmitPage() {
   return (
     <main className="mx-auto max-w-3xl px-6 py-8">
       <PageHeader
-        eyebrow={SUBMIT_HEADER.eyebrow}
-        title={mode === "update" ? SUBMIT_HEADER.titleUpdate : SUBMIT_HEADER.titleNew}
-        description={SUBMIT_HEADER.description}
+        eyebrow="Contribute"
+        title={mode === "update" ? "Update an Initiative" : "Submit a New Initiative"}
+        description="Provide structured information so OpenView can categorize, recommend, and surface your work."
       />
       <form className="space-y-4" onSubmit={submit} noValidate>
-
-        {/* ── Basics ─────────────────────────────────────────────────────── */}
-        <SectionBlock title={SUBMIT_SECTIONS.basics}>
+        <SectionBlock title="Basics">
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="sm:col-span-2">
-              <Label htmlFor="name">{SUBMIT_FIELDS.name.label} <Req /></Label>
-              <Input id="name" value={form.name} onChange={(e) => set("name", e.target.value)}
-                placeholder={SUBMIT_FIELDS.name.placeholder} className={`mt-1 ${errClass("name")}`} />
+              <Label htmlFor="name">Initiative name <Req /></Label>
+              <Input id="name" value={form.name} onChange={(e) => set("name", e.target.value)} placeholder="e.g. Claims Triage Copilot" className={`mt-1 ${errClass("name")}`} />
               {errors.name && <p className="mt-1 text-xs text-destructive">{errors.name}</p>}
             </div>
             <div>
-              <Label>{SUBMIT_FIELDS.owner.label} <Req /></Label>
-              <Input value={form.owner} onChange={(e) => set("owner", e.target.value)}
-                placeholder={SUBMIT_FIELDS.owner.placeholder} className={`mt-1 ${errClass("owner")}`} />
+              <Label>Owner <Req /></Label>
+              <Input value={form.owner} onChange={(e) => set("owner", e.target.value)} placeholder="Full name" className={`mt-1 ${errClass("owner")}`} />
               {errors.owner && <p className="mt-1 text-xs text-destructive">{errors.owner}</p>}
             </div>
             <div>
-              <Label>{SUBMIT_FIELDS.status.label} <Req /></Label>
-              <SelectField options={STATUS_OPTIONS} value={form.status}
-                onChange={(v) => set("status", v)} className={errClass("status")} />
+              <Label>Status <Req /></Label>
+              <Select value={form.status} onValueChange={(v) => set("status", v)}>
+                <SelectTrigger className={`mt-1 ${errClass("status")}`}><SelectValue placeholder="Select…" /></SelectTrigger>
+                <SelectContent>
+                  {["Idea","In Progress","Completed","Production"].map((s) => <SelectItem key={s} value={s}>{s}</SelectItem>)}
+                </SelectContent>
+              </Select>
               {errors.status && <p className="mt-1 text-xs text-destructive">{errors.status}</p>}
             </div>
             <div>
-              <Label>{SUBMIT_FIELDS.projectType.label}</Label>
-              <SelectField options={PROJECT_TYPE_OPTIONS} value={form.projectType}
-                onChange={(v) => set("projectType", v)} />
+              <Label>Project Type</Label>
+              <Select value={form.projectType} onValueChange={(v) => set("projectType", v)}>
+                <SelectTrigger className="mt-1"><SelectValue placeholder="Select…" /></SelectTrigger>
+                <SelectContent>
+                  {["POC","MVP","Accelerator","Product"].map((s) => <SelectItem key={s} value={s}>{s}</SelectItem>)}
+                </SelectContent>
+              </Select>
             </div>
             <div>
-              <Label>{SUBMIT_FIELDS.domain.label} <Req /></Label>
-              <SelectField options={DOMAIN_OPTIONS} value={form.domain}
-                onChange={(v) => set("domain", v)} className={errClass("domain")} />
+              <Label>Domain <Req /></Label>
+              <Select value={form.domain} onValueChange={(v) => set("domain", v)}>
+                <SelectTrigger className={`mt-1 ${errClass("domain")}`}><SelectValue placeholder="Select…" /></SelectTrigger>
+                <SelectContent>
+                  {["Banking","Healthcare","Retail","Manufacturing","Insurance","Telecom"].map((s) => <SelectItem key={s} value={s}>{s}</SelectItem>)}
+                </SelectContent>
+              </Select>
               {errors.domain && <p className="mt-1 text-xs text-destructive">{errors.domain}</p>}
             </div>
           </div>
         </SectionBlock>
 
-        {/* ── Business context ────────────────────────────────────────────── */}
-        <SectionBlock title={SUBMIT_SECTIONS.business}>
+        <SectionBlock title="Business context">
           <div className="grid gap-4">
             <div>
-              <Label htmlFor="problem">{SUBMIT_FIELDS.problem.label}</Label>
-              <Textarea id="problem" value={form.problem} onChange={(e) => set("problem", e.target.value)}
-                placeholder={SUBMIT_FIELDS.problem.placeholder} className="mt-1" />
+              <Label htmlFor="problem">Problem statement</Label>
+              <Textarea id="problem" value={form.problem} onChange={(e) => set("problem", e.target.value)} placeholder="What problem does this solve?" className="mt-1" />
             </div>
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
-                <Label>{SUBMIT_FIELDS.useCase.label}</Label>
-                <SelectField options={USE_CASE_OPTIONS} value={form.useCase}
-                  onChange={(v) => set("useCase", v)} />
+                <Label>Use case category</Label>
+                <Select value={form.useCase} onValueChange={(v) => set("useCase", v)}>
+                  <SelectTrigger className="mt-1"><SelectValue placeholder="Select…" /></SelectTrigger>
+                  <SelectContent>
+                    {["Automation","Insights","Customer Experience","Risk & Compliance","Operations","Productivity"].map((s) => <SelectItem key={s} value={s}>{s}</SelectItem>)}
+                  </SelectContent>
+                </Select>
               </div>
               <div>
-                <Label>{SUBMIT_FIELDS.users.label}</Label>
-                <Input value={form.users} onChange={(e) => set("users", e.target.value)}
-                  placeholder={SUBMIT_FIELDS.users.placeholder} className="mt-1" />
+                <Label>Target users</Label>
+                <Input value={form.users} onChange={(e) => set("users", e.target.value)} placeholder="e.g. Claims adjusters" className="mt-1" />
               </div>
             </div>
             <div>
-              <Label htmlFor="impact">{SUBMIT_FIELDS.impact.label}</Label>
-              <Textarea id="impact" value={form.impact} onChange={(e) => set("impact", e.target.value)}
-                placeholder={SUBMIT_FIELDS.impact.placeholder} className="mt-1" />
+              <Label htmlFor="impact">Impact / KPIs</Label>
+              <Textarea id="impact" value={form.impact} onChange={(e) => set("impact", e.target.value)} placeholder="Measured or target impact" className="mt-1" />
             </div>
           </div>
         </SectionBlock>
 
-        {/* ── AI & data ───────────────────────────────────────────────────── */}
-        <SectionBlock title={SUBMIT_SECTIONS.aiData}>
+        <SectionBlock title="AI & data">
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
-              <Label>{SUBMIT_FIELDS.capability.label} <Req /></Label>
-              <SelectField options={CAPABILITY_OPTIONS} value={form.capability}
-                onChange={(v) => set("capability", v)} className={errClass("capability")} />
+              <Label>AI capability <Req /></Label>
+              <Select value={form.capability} onValueChange={(v) => set("capability", v)}>
+                <SelectTrigger className={`mt-1 ${errClass("capability")}`}><SelectValue placeholder="Select…" /></SelectTrigger>
+                <SelectContent>
+                  {["NLP","Computer Vision","Generative AI","Forecasting","Recommender","Speech"].map((s) => <SelectItem key={s} value={s}>{s}</SelectItem>)}
+                </SelectContent>
+              </Select>
               {errors.capability && <p className="mt-1 text-xs text-destructive">{errors.capability}</p>}
             </div>
             <div>
-              <Label htmlFor="models">{SUBMIT_FIELDS.models.label}</Label>
-              <Input id="models" value={form.models} onChange={(e) => set("models", e.target.value)}
-                placeholder={SUBMIT_FIELDS.models.placeholder} className="mt-1" />
+              <Label htmlFor="models">Models / frameworks</Label>
+              <Input id="models" value={form.models} onChange={(e) => set("models", e.target.value)} placeholder="e.g. GPT-4o, LangGraph" className="mt-1" />
             </div>
             <div className="sm:col-span-2">
-              <Label>{SUBMIT_FIELDS.dataType.label}</Label>
-              <SelectField options={DATA_TYPE_OPTIONS} value={form.dataType}
-                onChange={(v) => set("dataType", v)} />
+              <Label>Data type</Label>
+              <Select value={form.dataType} onValueChange={(v) => set("dataType", v)}>
+                <SelectTrigger className="mt-1"><SelectValue placeholder="Select…" /></SelectTrigger>
+                <SelectContent>
+                  {["Tabular","Documents","Images","Audio","Time Series","Logs","Multimodal"].map((s) => <SelectItem key={s} value={s}>{s}</SelectItem>)}
+                </SelectContent>
+              </Select>
             </div>
           </div>
         </SectionBlock>
 
-        {/* ── Reusability ─────────────────────────────────────────────────── */}
-        <SectionBlock title={SUBMIT_SECTIONS.reusability}>
+        <SectionBlock title="Reusability">
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
-              <Label>{SUBMIT_FIELDS.reusable.label} <Req /></Label>
-              <SelectField options={REUSE_LEVEL_OPTIONS} value={form.reusable}
-                onChange={(v) => set("reusable", v)} className={errClass("reusable")} />
+              <Label>Reusable? <Req /></Label>
+              <Select value={form.reusable} onValueChange={(v) => set("reusable", v)}>
+                <SelectTrigger className={`mt-1 ${errClass("reusable")}`}><SelectValue placeholder="Select…" /></SelectTrigger>
+                <SelectContent>
+                  {["Yes","No","Partial"].map((s) => <SelectItem key={s} value={s}>{s}</SelectItem>)}
+                </SelectContent>
+              </Select>
               {errors.reusable && <p className="mt-1 text-xs text-destructive">{errors.reusable}</p>}
             </div>
             <div>
-              <Label>{SUBMIT_FIELDS.reuseType.label}</Label>
-              <SelectField options={REUSE_TYPE_OPTIONS} value={form.reuseType}
-                onChange={(v) => set("reuseType", v)} />
+              <Label>Reuse type</Label>
+              <Select value={form.reuseType} onValueChange={(v) => set("reuseType", v)}>
+                <SelectTrigger className="mt-1"><SelectValue placeholder="Select…" /></SelectTrigger>
+                <SelectContent>
+                  {["Code","Prompt","Architecture","End-to-end"].map((s) => <SelectItem key={s} value={s}>{s}</SelectItem>)}
+                </SelectContent>
+              </Select>
             </div>
             <div>
-              <Label>{SUBMIT_FIELDS.reuseEffort.label}</Label>
-              <SelectField options={REUSE_EFFORT_OPTIONS} value={form.reuseEffort}
-                onChange={(v) => set("reuseEffort", v)} />
+              <Label>Reuse effort</Label>
+              <Select value={form.reuseEffort} onValueChange={(v) => set("reuseEffort", v)}>
+                <SelectTrigger className="mt-1"><SelectValue placeholder="Select…" /></SelectTrigger>
+                <SelectContent>
+                  {["Low","Medium","High"].map((s) => <SelectItem key={s} value={s}>{s}</SelectItem>)}
+                </SelectContent>
+              </Select>
             </div>
             <div>
-              <Label>{SUBMIT_FIELDS.demo.label}</Label>
-              <SelectField options={DEMO_OPTIONS} value={form.demo}
-                onChange={(v) => set("demo", v)} />
+              <Label>Demo available</Label>
+              <Select value={form.demo} onValueChange={(v) => set("demo", v)}>
+                <SelectTrigger className="mt-1"><SelectValue placeholder="Select…" /></SelectTrigger>
+                <SelectContent>
+                  {["Yes","No"].map((s) => <SelectItem key={s} value={s}>{s}</SelectItem>)}
+                </SelectContent>
+              </Select>
             </div>
             <div className="sm:col-span-2">
-              <Label>{SUBMIT_FIELDS.assetLinks.label}</Label>
+              <Label>Asset links</Label>
               <div className="mt-1 space-y-2">
                 {form.assetLinks.map((link, idx) => (
                   <div key={idx} className="flex gap-2">
@@ -235,46 +249,44 @@ function SubmitPage() {
                         next[idx] = e.target.value;
                         set("assetLinks", next);
                       }}
-                      placeholder={SUBMIT_FIELDS.assetLinks.placeholder}
+                      placeholder="https://… or asset id"
                     />
                     {form.assetLinks.length > 1 && (
-                      <Button type="button" variant="ghost" size="icon"
-                        onClick={() => set("assetLinks", form.assetLinks.filter((_, i) => i !== idx))}>
+                      <Button type="button" variant="ghost" size="icon" onClick={() => set("assetLinks", form.assetLinks.filter((_, i) => i !== idx))}>
                         <X className="h-4 w-4" />
                       </Button>
                     )}
                   </div>
                 ))}
-                <Button type="button" variant="outline" size="sm"
-                  onClick={() => set("assetLinks", [...form.assetLinks, ""])}>
-                  <Plus className="mr-1 h-3.5 w-3.5" /> {SUBMIT_BUTTONS.addAssetLink}
+                <Button type="button" variant="outline" size="sm" onClick={() => set("assetLinks", [...form.assetLinks, ""])}>
+                  <Plus className="mr-1 h-3.5 w-3.5" /> Add asset link
                 </Button>
               </div>
             </div>
           </div>
         </SectionBlock>
 
-        {/* ── Delivery & architecture ─────────────────────────────────────── */}
-        <SectionBlock title={SUBMIT_SECTIONS.delivery}>
+        <SectionBlock title="Delivery & architecture">
           <div className="grid gap-4">
             <div>
-              <Label>{SUBMIT_FIELDS.deployment.label}</Label>
-              <SelectField options={DEPLOYMENT_OPTIONS} value={form.deployment}
-                onChange={(v) => set("deployment", v)} />
+              <Label>Deployment type</Label>
+              <Select value={form.deployment} onValueChange={(v) => set("deployment", v)}>
+                <SelectTrigger className="mt-1"><SelectValue placeholder="Select…" /></SelectTrigger>
+                <SelectContent>
+                  {["Cloud","On-Prem","Hybrid","Edge"].map((s) => <SelectItem key={s} value={s}>{s}</SelectItem>)}
+                </SelectContent>
+              </Select>
             </div>
             <div>
-              <Label>{SUBMIT_FIELDS.architecture.label}</Label>
-              <Textarea value={form.architecture} onChange={(e) => set("architecture", e.target.value)}
-                placeholder={SUBMIT_FIELDS.architecture.placeholder} className="mt-1" />
+              <Label>Architecture summary</Label>
+              <Textarea value={form.architecture} onChange={(e) => set("architecture", e.target.value)} placeholder="High-level architecture, key components, data flow…" className="mt-1" />
             </div>
           </div>
         </SectionBlock>
 
         <div className="flex justify-end gap-2">
-          <Button variant="ghost" type="reset">{SUBMIT_BUTTONS.cancel}</Button>
-          <Button type="submit">
-            {mode === "update" ? SUBMIT_BUTTONS.submitUpdate : SUBMIT_BUTTONS.submitNew}
-          </Button>
+          <Button variant="ghost" type="reset">Cancel</Button>
+          <Button type="submit">{mode === "update" ? "Save changes" : "Submit initiative"}</Button>
         </div>
       </form>
     </main>

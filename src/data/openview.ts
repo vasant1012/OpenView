@@ -577,6 +577,7 @@ export function getAsset(id: string) {
 }
 
 // ---------- Derived metadata (used when explicit fields are absent) ----------
+
 const capabilityToReuseType: Record<AICapability, ReuseType> = {
   "Generative AI": "Prompt",
   NLP: "End-to-end",
@@ -585,6 +586,7 @@ const capabilityToReuseType: Record<AICapability, ReuseType> = {
   Recommender: "Architecture",
   Speech: "Code",
 };
+
 const maturityToEffort: Record<Maturity, ReuseEffort> = {
   Concept: "High",
   POC: "High",
@@ -592,6 +594,7 @@ const maturityToEffort: Record<Maturity, ReuseEffort> = {
   Pilot: "Medium",
   Production: "Low",
 };
+
 const domainToUseCase: Record<Domain, UseCaseCategory> = {
   Banking: "Risk & Compliance",
   Insurance: "Risk & Compliance",
@@ -600,6 +603,7 @@ const domainToUseCase: Record<Domain, UseCaseCategory> = {
   Manufacturing: "Operations",
   Telecom: "Operations",
 };
+
 export function getReuseType(i: Initiative): ReuseType {
   return i.reuseType ?? capabilityToReuseType[i.capability];
 }
@@ -641,6 +645,7 @@ export function getIndustryApplicability(i: Initiative): string {
     `${i.domain} primarily; patterns transfer to adjacent regulated industries.`
   );
 }
+
 const assetTypeToReuseType: Record<AssetType, ReuseType> = {
   Accelerator: "End-to-end",
   Demo: "End-to-end",
@@ -648,6 +653,7 @@ const assetTypeToReuseType: Record<AssetType, ReuseType> = {
   Template: "Architecture",
   Code: "Code",
 };
+
 export function getAssetReuseType(a: Asset): ReuseType {
   return a.reuseType ?? assetTypeToReuseType[a.type];
 }
@@ -681,7 +687,9 @@ export function getAssetSecurity(a: Asset): string {
     "Review tenant isolation, data residency, and PII handling before production rollout."
   );
 }
+
 // ---------- Aggregations ----------
+
 export function getFunnelCounts() {
   const stages: Array<{ label: string; key: Maturity[] | Status[] }> = [
     { label: "Idea", key: ["Idea"] as Status[] },
@@ -697,6 +705,7 @@ export function getFunnelCounts() {
     return { label: s.label, count };
   });
 }
+
 export function getTopDomainsByProduction() {
   const counts = initiatives
     .filter((i) => i.maturity === "Production" || i.status === "Production")
@@ -708,6 +717,7 @@ export function getTopDomainsByProduction() {
     .sort((a, b) => b[1] - a[1])
     .map(([domain, count]) => ({ domain, count }));
 }
+
 export function getTopReusableInitiatives(limit = 4) {
   return [...initiatives]
     .filter((i) => i.reusable)

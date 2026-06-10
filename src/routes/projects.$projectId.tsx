@@ -139,7 +139,7 @@ function ProjectDetail() {
             <ReuseEffortBadge effort={getReuseEffort(project)} />
             {project.demo ? <DemoBadge /> : null}
           </div>
-           <dl className="mb-4 grid gap-4 sm:grid-cols-2">
+          <dl className="mb-4 grid gap-4 sm:grid-cols-2">
             <Field label="What can be reused">{getReuseSummary(project)}</Field>
             <Field label="Reusable assets">{project.assets.length}</Field>
           </dl>

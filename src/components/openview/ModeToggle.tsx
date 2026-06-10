@@ -3,21 +3,14 @@ import { useTheme } from "./ThemeProvider";
 import { cn } from "@/lib/utils";
 
 export function ModeToggle({ className }: { className?: string }) {
-  const { theme, resolvedTheme, setTheme } = useTheme();
-  const currentTheme = theme === "system" ? resolvedTheme : theme;
-  const handleClick = () => {
-    const next = currentTheme === "dark" ? "light" : "dark";
-    console.debug("ModeToggle: click -> current=", currentTheme, "next=", next, "(theme prop=", theme, ")");
-    setTheme(next);
-  };
+  const { resolvedTheme, setTheme } = useTheme();
 
   return (
     <button
       type="button"
-      onClick={handleClick}
-      data-theme={currentTheme}
+      onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
       className={cn(
-        "relative inline-flex h-9 w-9 items-center justify-center rounded-md border border-input bg-background text-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+        "inline-flex h-9 w-9 items-center justify-center rounded-md border border-input bg-background text-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
         className,
       )}
       aria-label="Toggle theme"
@@ -28,4 +21,3 @@ export function ModeToggle({ className }: { className?: string }) {
     </button>
   );
 }
-

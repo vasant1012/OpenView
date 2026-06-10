@@ -35,7 +35,7 @@ export function AssetCard({ asset }: { asset: Asset }) {
             params={{ projectId: linked.id }}
             className="font-semibold text-primary hover:underline"
           >
-            {linked.name}
+            {linked.name} →
           </Link>
         </div>
       ) : null}
@@ -49,8 +49,7 @@ export function AssetCard({ asset }: { asset: Asset }) {
       <dl className="mb-4 grid grid-cols-2 gap-x-4 gap-y-1.5 text-xs">
         <div><dt className="text-muted-foreground">Reuse score</dt><dd className="font-medium text-foreground">{asset.reuseScore}</dd></div>
         <div><dt className="text-muted-foreground">Demo ready</dt><dd className="font-medium text-foreground">{asset.demoReady ? "Yes" : "No"}</dd></div>
-        <div><dt className="text-muted-foreground">Maturity</dt><dd className="font-medium text-foreground">{asset.maturity}</dd></div><div><dt className="text-muted-foreground">Reuse Type</dt><dd><ReuseTypeBadge type={reuseType} /></dd></div>
-        <div><dt className="text-muted-foreground">Demo</dt><dd className="font-medium text-foreground">{asset.demoReady ? "Ready" : "—"}</dd></div>
+        <div><dt className="text-muted-foreground">Maturity</dt><dd className="font-medium text-foreground">{asset.maturity}</dd></div>
         <div className="col-span-2"><dt className="text-muted-foreground">Stack</dt><dd className="font-medium text-foreground">{asset.stack.join(", ")}</dd></div>
       </dl>
       <footer className="mt-auto flex items-center justify-end gap-2 border-t pt-3">

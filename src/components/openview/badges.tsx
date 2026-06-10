@@ -41,7 +41,7 @@ const maturityTooltip: Record<Maturity, string> = {
 
 export function MaturityBadge({ maturity }: { maturity: Maturity }) {
   return (
-        <TooltipProvider delayDuration={150}>
+    <TooltipProvider delayDuration={150}>
       <Tooltip>
         <TooltipTrigger asChild>
           <Badge className="border-0 bg-maturity text-maturity-foreground font-medium cursor-help">
@@ -84,6 +84,7 @@ const projectTypeStyle: Record<ProjectType, string> = {
   Product: "bg-status-success text-status-success-foreground",
   "Internal Tool": "bg-status-info text-status-info-foreground",
 };
+
 export function ProjectTypeBadge({ type }: { type: ProjectType }) {
   return (
     <Badge className={cn("border-0 font-medium", projectTypeStyle[type])}>
@@ -91,12 +92,14 @@ export function ProjectTypeBadge({ type }: { type: ProjectType }) {
     </Badge>
   );
 }
+
 const reuseTypeTooltip: Record<ReuseType, string> = {
   Code: "Library, SDK, or model artifact you can import directly.",
   Prompt: "Curated prompts, system messages, and evaluation sets.",
   Architecture: "Reference architecture, pipelines, and templates.",
   "End-to-end": "Full accelerator including UI, model, and integrations.",
 };
+
 export function ReuseTypeBadge({ type }: { type: ReuseType }) {
   return (
     <TooltipProvider delayDuration={150}>
@@ -114,6 +117,7 @@ export function ReuseTypeBadge({ type }: { type: ReuseType }) {
     </TooltipProvider>
   );
 }
+
 const effortStyle: Record<ReuseEffort, string> = {
   Low: "bg-status-success/20 text-status-success-foreground",
   Medium: "bg-status-warning/30 text-status-warning-foreground",
@@ -124,6 +128,7 @@ const effortTooltip: Record<ReuseEffort, string> = {
   Medium: "A few weeks of integration and configuration.",
   High: "Significant rework or new infra required.",
 };
+
 export function ReuseEffortBadge({ effort }: { effort: ReuseEffort }) {
   return (
     <TooltipProvider delayDuration={150}>
@@ -140,6 +145,7 @@ export function ReuseEffortBadge({ effort }: { effort: ReuseEffort }) {
     </TooltipProvider>
   );
 }
+
 export function ReuseLevelBadge({ level }: { level: ReuseLevel }) {
   const map: Record<ReuseLevel, string> = {
     Yes: "bg-reusable text-reusable-foreground",

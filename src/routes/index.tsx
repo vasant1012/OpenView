@@ -1,4 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
+import {
+  Activity,
+  CheckCircle2,
+  Layers,
+  Library,
+  PlayCircle,
+  Rocket,
+} from "lucide-react";
 import { MetricCard } from "@/components/openview/MetricCard";
 import { SectionBlock } from "@/components/openview/SectionBlock";
 import { ActivityList } from "@/components/openview/ActivityList";
@@ -13,21 +21,12 @@ import {
 import { initiatives, assets, getTopReusableInitiatives } from "@/data/openview";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "@tanstack/react-router";
-import {
-  HOME_META,
-  HOME_HEADER,
-  HOME_METRICS,
-  HOME_SECTIONS,
-  HOME_BADGES,
-  HOME_FEATURED_LIMIT,
-  HOME_TOP_REUSABLE_LIMIT,
-} from "@/data/home";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: HOME_META.title },
-      { name: "description", content: HOME_META.description },
+      { title: "Home · OpenView" },
+      { name: "description", content: "Tavant AI OpenView — your hub for AI initiatives, reusable assets, and team activity." },
     ],
   }),
   component: Home,
@@ -35,63 +34,51 @@ export const Route = createFileRoute("/")({
 
 function Home() {
   const totals = {
-    total:      initiatives.length,
+    total: initiatives.length,
     inProgress: initiatives.filter((i) => i.status === "In Progress").length,
-    completed:  initiatives.filter((i) => i.status === "Completed").length,
+    completed: initiatives.filter((i) => i.status === "Completed").length,
     production: initiatives.filter((i) => i.status === "Production").length,
-    reusable:   assets.length,
-    demo:       assets.filter((a) => a.demoReady).length,
+    reusable: assets.length,
+    demo: assets.filter((a) => a.demoReady).length,
   };
-  const featured   = initiatives.filter((i) => i.reusable).slice(0, HOME_FEATURED_LIMIT);
-  const topReusable = getTopReusableInitiatives(HOME_TOP_REUSABLE_LIMIT);
+  const featured = initiatives.filter((i) => i.reusable).slice(0, 6);
+  const topReusable = getTopReusableInitiatives(4);
 
   return (
     <main className="mx-auto max-w-7xl px-6 py-8">
       <PageHeader
-        eyebrow={HOME_HEADER.eyebrow}
-        title={HOME_HEADER.title}
-        description={HOME_HEADER.description}
+        eyebrow="Home"
+        title="OpenView Dashboard"
+        description="A single window into every AI initiative, reusable asset, and update across the organization."
         actions={<CTAButtonGroup />}
       />
 
-      {/* Metric cards */}
       <section className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
-        {HOME_METRICS.map((m) => (
-          <MetricCard
-            key={m.key}
-            label={m.label}
-            value={totals[m.key]}
-            icon={m.icon}
-            to={m.to}
-            search={m.search as never}
-            tone={m.tone}
-          />
-        ))}
+        <MetricCard label="Total Initiatives" value={totals.total} icon={Layers} to="/explore" tone="primary" />
+        <MetricCard label="In Progress" value={totals.inProgress} icon={Activity} to="/explore" search={{ status: ["In Progress"] }} tone="warning" />
+        <MetricCard label="Completed" value={totals.completed} icon={CheckCircle2} to="/explore" search={{ status: ["Completed"] }} tone="info" />
+        <MetricCard label="Production" value={totals.production} icon={Rocket} to="/explore" search={{ status: ["Production"] }} tone="success" />
+        <MetricCard label="Reusable Assets" value={totals.reusable} icon={Library} to="/assets" tone="reusable" />
+        <MetricCard label="Demo Ready" value={totals.demo} icon={PlayCircle} to="/assets" search={{ demo: ["Yes"] }} tone="info" />
       </section>
 
-      {/* Charts row */}
       <section className="mb-8 grid gap-4 lg:grid-cols-3">
-        <SectionBlock title={HOME_SECTIONS.charts[0].title} description={HOME_SECTIONS.charts[0].description}>
+        <SectionBlock title="Status distribution" description="Initiatives by lifecycle stage">
           <StatusBarChart />
         </SectionBlock>
-        <SectionBlock title={HOME_SECTIONS.charts[1].title} description={HOME_SECTIONS.charts[1].description}>
+        <SectionBlock title="Domain mix" description="Where AI investment is landing">
           <DomainPieChart />
         </SectionBlock>
-        <SectionBlock title={HOME_SECTIONS.charts[2].title} description={HOME_SECTIONS.charts[2].description}>
+        <SectionBlock title="AI capabilities" description="What we're shipping with">
           <CapabilityTagCloud />
         </SectionBlock>
       </section>
 
-      {/* Recent + Featured */}
       <section className="mb-8 grid gap-4 lg:grid-cols-3">
-        <SectionBlock title={HOME_SECTIONS.recentUpdates.title} className="lg:col-span-1">
+        <SectionBlock title="Recent updates" className="lg:col-span-1">
           <ActivityList />
         </SectionBlock>
-        <SectionBlock
-          title={HOME_SECTIONS.featured.title}
-          description={HOME_SECTIONS.featured.description}
-          className="lg:col-span-2"
-        >
+        <SectionBlock title="Featured reusable initiatives" description="Battle-tested across multiple teams" className="lg:col-span-2">
           <div className="grid gap-4 sm:grid-cols-2">
             {featured.map((p) => (
               <ProjectCard key={p.id} project={p} />
@@ -100,10 +87,9 @@ function Home() {
         </SectionBlock>
       </section>
 
-      {/* Top reusable */}
       <SectionBlock
-        title={HOME_SECTIONS.topReusable.title}
-        description={HOME_SECTIONS.topReusable.description}
+        title="Top reusable initiatives"
+        description="Ranked by average asset reuse score and demo availability."
         className="mb-8"
       >
         <ul className="divide-y">
@@ -122,21 +108,19 @@ function Home() {
                 </p>
               </div>
               <div className="flex flex-wrap items-center gap-2">
-                {initiative.status === "Production" && (
+                {initiative.status === "Production" ? (
                   <Badge className="border-0 bg-status-success text-status-success-foreground">
-                    {HOME_BADGES.productionReady}
+                    Production Ready
                   </Badge>
-                )}
-                {score >= HOME_BADGES.highReuseScore && (
+                ) : null}
+                {score >= 80 ? (
                   <Badge className="border-0 bg-reusable text-reusable-foreground">
-                    {HOME_BADGES.highReuseLabel}
+                    High Reuse Potential
                   </Badge>
-                )}
-                {demoReady && (
-                  <Badge className="border-0 bg-demo text-demo-foreground">
-                    {HOME_BADGES.demoLabel}
-                  </Badge>
-                )}
+                ) : null}
+                {demoReady ? (
+                  <Badge className="border-0 bg-demo text-demo-foreground">▶ Demo</Badge>
+                ) : null}
                 <span className="text-sm font-semibold text-foreground tabular-nums">{score}</span>
               </div>
             </li>
@@ -144,14 +128,10 @@ function Home() {
         </ul>
       </SectionBlock>
 
-      {/* Start here */}
-      <SectionBlock
-        title={HOME_SECTIONS.startHere.title}
-        description={HOME_SECTIONS.startHere.description}
-      >
+      <SectionBlock title="Start here" description="New to OpenView? Take the 5-minute tour to learn how initiatives, assets, and contributors connect.">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <p className="max-w-xl text-sm text-muted-foreground">
-            {HOME_SECTIONS.startHere.body}
+            Onboarding walks you through submitting an initiative, tagging it for discovery, and linking reusable assets so other teams can build on your work.
           </p>
           <CTAButtonGroup />
         </div>

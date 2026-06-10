@@ -48,6 +48,7 @@ function LeadershipPage() {
           <TopDomainsProduction />
         </SectionBlock>
       </section>
+
       <section className="mb-6 grid gap-4 lg:grid-cols-3">
         <SectionBlock title="Reuse rate trend" description="Rolling 6-quarter view" className="lg:col-span-2">
           <ReuseRateTrend />
@@ -56,7 +57,8 @@ function LeadershipPage() {
           <p className="text-4xl font-semibold text-foreground">{Math.round((reusable / initiatives.length) * 100)}%</p>
           <p className="mt-1 text-sm text-muted-foreground">of initiatives produce reusable assets.</p>
         </SectionBlock>
-        </section>
+      </section>
+
       <section className="grid gap-4 lg:grid-cols-3">
         <SectionBlock title="Recent activity" className="lg:col-span-3">
           <ActivityList />
