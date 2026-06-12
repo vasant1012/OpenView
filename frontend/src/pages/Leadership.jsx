@@ -75,7 +75,7 @@ export default function Leadership() {
                 <YAxis dataKey="name" type="category" width={130} tick={{ fontSize: 11, fill: "#0F172A" }} axisLine={{ stroke: "#E2E8F0" }} tickLine={false} />
                 <Tooltip contentStyle={{ background: "#fff", border: "1px solid #E2E8F0", borderRadius: 2, fontSize: 12 }} cursor={{ fill: "#F1F5F9" }} />
                 <Bar dataKey="value" radius={[0, 2, 2, 0]}>
-                  {byDomain.map((_, i) => <Cell key={i} fill={CHART_COLORS[i % CHART_COLORS.length]} />)}
+                  {byDomain.map((entry, i) => <Cell key={entry.name} fill={CHART_COLORS[i % CHART_COLORS.length]} />)}
                 </Bar>
               </BarChart>
             </ResponsiveContainer>

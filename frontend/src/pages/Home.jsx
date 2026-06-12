@@ -142,8 +142,8 @@ export default function Home() {
             <ResponsiveContainer>
               <PieChart>
                 <Pie data={domainData} dataKey="value" nameKey="name" innerRadius={42} outerRadius={70} paddingAngle={2}>
-                  {domainData.map((_, i) => (
-                    <Cell key={i} fill={CHART_COLORS[i % CHART_COLORS.length]} />
+                  {domainData.map((entry) => (
+                    <Cell key={entry.name} fill={CHART_COLORS[domainData.indexOf(entry) % CHART_COLORS.length]} />
                   ))}
                 </Pie>
                 <Tooltip contentStyle={{ background: "#fff", border: "1px solid #E2E8F0", borderRadius: 2, fontSize: 12 }} />

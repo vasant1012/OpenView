@@ -18,6 +18,13 @@ export default function ProjectDetail() {
     () => assets.filter((a) => a.projectId === id),
     [assets, id]
   );
+  const team = useMemo(() => {
+    if (!project) return [];
+    return [
+      { ...project.owner, role: "Owner" },
+      ...(project.contributors || []).map((c) => ({ ...c, role: "Contributor" })),
+    ].filter((m) => m && m.name);
+  }, [project]);
   const similar = useMemo(() => {
     if (!project) return [];
     return projects
@@ -189,14 +196,14 @@ export default function ProjectDetail() {
 
           <SectionBlock title="Team">
             <div className="space-y-3">
-              {[project.owner, ...(project.contributors || [])].filter(Boolean).map((m, i) => (
-                <div key={i} className="flex items-center gap-3">
+              {team.map((m) => (
+                <div key={m.name} className="flex items-center gap-3">
                   <div className="w-8 h-8 rounded-full bg-slate-900 text-white text-[10px] font-medium flex items-center justify-center">
                     {m.initials}
                   </div>
                   <div className="text-sm">
                     <div className="text-slate-900 font-medium">{m.name}</div>
-                    <div className="text-xs text-slate-500">{i === 0 ? "Owner" : "Contributor"}</div>
+                    <div className="text-xs text-slate-500">{m.role}</div>
                   </div>
                 </div>
               ))}

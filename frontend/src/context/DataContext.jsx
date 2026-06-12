@@ -15,8 +15,8 @@ function loadStored() {
         updates: parsed.updates || SEED_UPDATES,
       };
     }
-  } catch {
-    /* ignore parse errors */
+  } catch (e) {
+    console.error("OpenView: failed to read stored data", e);
   }
   return { projects: SEED_PROJECTS, assets: SEED_ASSETS, updates: SEED_UPDATES };
 }
@@ -33,8 +33,8 @@ export function DataProvider({ children }) {
         STORAGE_KEY,
         JSON.stringify({ projects, assets, updates })
       );
-    } catch {
-      /* ignore storage errors */
+    } catch (e) {
+      console.error("OpenView: failed to persist data", e);
     }
   }, [projects, assets, updates]);
 
