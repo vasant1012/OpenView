@@ -14,7 +14,7 @@ import ProjectCard from "@/components/ProjectCard";
 import SectionBlock from "@/components/SectionBlock";
 import CTAButtonGroup from "@/components/CTAButtonGroup";
 
-const CHART_COLORS = ["#2563EB", "#334155", "#94A3B8", "#CBD5E1", "#0F172A", "#3B82F6", "#64748B", "#1E40AF"];
+const CHART_COLORS = ["#FF6600", "#FF7B24", "#FF9148", "#FFA76D", "#FFBD91", "#FFD3B6", "#FFE9DA"];
 
 function timeAgo(ts) {
   const diff = Date.now() - ts;
@@ -131,7 +131,7 @@ export default function Home() {
                   cursor={{ fill: "#F1F5F9" }}
                   contentStyle={{ background: "#fff", border: "1px solid #E2E8F0", borderRadius: 2, fontSize: 12 }}
                 />
-                <Bar dataKey="value" fill="#2563EB" radius={[2, 2, 0, 0]} />
+                <Bar dataKey="value" fill="#FF6600" radius={[2, 2, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>

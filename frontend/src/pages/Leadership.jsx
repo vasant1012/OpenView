@@ -8,7 +8,7 @@ import { useData } from "@/context/DataContext";
 import SectionBlock from "@/components/SectionBlock";
 import { StatusBadge } from "@/components/StatusBadge";
 
-const CHART_COLORS = ["#2563EB", "#334155", "#94A3B8", "#CBD5E1", "#0F172A"];
+const CHART_COLORS = ["#FF6600", "#FF7B24", "#FF9148", "#FFA76D", "#FFBD91", "#FFD3B6", "#FFE9DA"];
 
 export default function Leadership() {
   const { projects, assets } = useData();
@@ -89,7 +89,7 @@ export default function Leadership() {
                 <PolarGrid stroke="#E2E8F0" />
                 <PolarAngleAxis dataKey="name" tick={{ fontSize: 10, fill: "#64748B" }} />
                 <PolarRadiusAxis tick={{ fontSize: 10, fill: "#94A3B8" }} stroke="#CBD5E1" />
-                <Radar dataKey="value" stroke="#2563EB" fill="#2563EB" fillOpacity={0.25} />
+                <Radar dataKey="value" stroke="#FF6600" fill="#FF6600" fillOpacity={0.25} />
               </RadarChart>
             </ResponsiveContainer>
           </div>
@@ -102,7 +102,7 @@ export default function Leadership() {
                 <XAxis dataKey="name" tick={{ fontSize: 11, fill: "#64748B" }} axisLine={{ stroke: "#E2E8F0" }} tickLine={false} />
                 <YAxis tick={{ fontSize: 11, fill: "#64748B" }} axisLine={{ stroke: "#E2E8F0" }} tickLine={false} />
                 <Tooltip contentStyle={{ background: "#fff", border: "1px solid #E2E8F0", borderRadius: 2, fontSize: 12 }} cursor={{ fill: "#F1F5F9" }} />
-                <Bar dataKey="value" fill="#0F172A" radius={[2, 2, 0, 0]} />
+                <Bar dataKey="value" fill="#FF6600" radius={[2, 2, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
