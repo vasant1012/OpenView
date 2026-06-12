@@ -7,12 +7,14 @@ import {
 import { useData } from "@/context/DataContext";
 import SectionBlock from "@/components/SectionBlock";
 import { StatusBadge } from "@/components/StatusBadge";
+import { useChartTheme } from "@/hooks/useChartTheme";
 
 const CHART_COLORS = ["#FF6600", "#FF7B24", "#FF9148", "#FFA76D", "#FFBD91", "#FFD3B6", "#FFE9DA"];
 
 export default function Leadership() {
   const { projects, assets } = useData();
   const navigate = useNavigate();
+  const ct = useChartTheme();
 
   const byDomain = useMemo(() => {
     const c = {};
@@ -71,9 +73,9 @@ export default function Leadership() {
           <div className="h-64">
             <ResponsiveContainer>
               <BarChart data={byDomain} layout="vertical" margin={{ top: 10, right: 20, left: 0, bottom: 0 }}>
-                <XAxis type="number" tick={{ fontSize: 11, fill: "#64748B" }} axisLine={{ stroke: "#E2E8F0" }} tickLine={false} />
-                <YAxis dataKey="name" type="category" width={130} tick={{ fontSize: 11, fill: "#0F172A" }} axisLine={{ stroke: "#E2E8F0" }} tickLine={false} />
-                <Tooltip contentStyle={{ background: "#fff", border: "1px solid #E2E8F0", borderRadius: 2, fontSize: 12 }} cursor={{ fill: "#F1F5F9" }} />
+                <XAxis type="number" tick={{ fontSize: 11, fill: ct.axisTick }} axisLine={{ stroke: ct.axisLine }} tickLine={false} />
+                <YAxis dataKey="name" type="category" width={130} tick={{ fontSize: 11, fill: ct.axisTickStrong }} axisLine={{ stroke: ct.axisLine }} tickLine={false} />
+                <Tooltip contentStyle={ct.tooltip} cursor={{ fill: ct.cursor }} />
                 <Bar dataKey="value" radius={[0, 2, 2, 0]}>
                   {byDomain.map((entry, i) => <Cell key={entry.name} fill={CHART_COLORS[i % CHART_COLORS.length]} />)}
                 </Bar>
@@ -86,9 +88,9 @@ export default function Leadership() {
           <div className="h-64">
             <ResponsiveContainer>
               <RadarChart data={capabilityRadar}>
-                <PolarGrid stroke="#E2E8F0" />
-                <PolarAngleAxis dataKey="name" tick={{ fontSize: 10, fill: "#64748B" }} />
-                <PolarRadiusAxis tick={{ fontSize: 10, fill: "#94A3B8" }} stroke="#CBD5E1" />
+                <PolarGrid stroke={ct.grid} />
+                <PolarAngleAxis dataKey="name" tick={{ fontSize: 10, fill: ct.axisTick }} />
+                <PolarRadiusAxis tick={{ fontSize: 10, fill: ct.axisTick }} stroke={ct.grid} />
                 <Radar dataKey="value" stroke="#FF6600" fill="#FF6600" fillOpacity={0.25} />
               </RadarChart>
             </ResponsiveContainer>
@@ -99,9 +101,9 @@ export default function Leadership() {
           <div className="h-64">
             <ResponsiveContainer>
               <BarChart data={reuseDistribution} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                <XAxis dataKey="name" tick={{ fontSize: 11, fill: "#64748B" }} axisLine={{ stroke: "#E2E8F0" }} tickLine={false} />
-                <YAxis tick={{ fontSize: 11, fill: "#64748B" }} axisLine={{ stroke: "#E2E8F0" }} tickLine={false} />
-                <Tooltip contentStyle={{ background: "#fff", border: "1px solid #E2E8F0", borderRadius: 2, fontSize: 12 }} cursor={{ fill: "#F1F5F9" }} />
+                <XAxis dataKey="name" tick={{ fontSize: 11, fill: ct.axisTick }} axisLine={{ stroke: ct.axisLine }} tickLine={false} />
+                <YAxis tick={{ fontSize: 11, fill: ct.axisTick }} axisLine={{ stroke: ct.axisLine }} tickLine={false} />
+                <Tooltip contentStyle={ct.tooltip} cursor={{ fill: ct.cursor }} />
                 <Bar dataKey="value" fill="#FF6600" radius={[2, 2, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>

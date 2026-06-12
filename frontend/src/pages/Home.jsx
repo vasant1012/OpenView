@@ -13,6 +13,7 @@ import MetricCard from "@/components/MetricCard";
 import ProjectCard from "@/components/ProjectCard";
 import SectionBlock from "@/components/SectionBlock";
 import CTAButtonGroup from "@/components/CTAButtonGroup";
+import { useChartTheme } from "@/hooks/useChartTheme";
 
 const CHART_COLORS = ["#FF6600", "#FF7B24", "#FF9148", "#FFA76D", "#FFBD91", "#FFD3B6", "#FFE9DA"];
 
@@ -29,6 +30,7 @@ function timeAgo(ts) {
 export default function Home() {
   const { projects, assets, updates } = useData();
   const navigate = useNavigate();
+  const ct = useChartTheme();
 
   const metrics = useMemo(() => {
     const inProgress = projects.filter((p) => p.status === "In Progress").length;
@@ -125,11 +127,11 @@ export default function Home() {
           <div className="h-56">
             <ResponsiveContainer>
               <BarChart data={statusData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                <XAxis dataKey="name" tick={{ fontSize: 11, fill: "#64748B" }} tickLine={false} axisLine={{ stroke: "#E2E8F0" }} />
-                <YAxis tick={{ fontSize: 11, fill: "#64748B" }} tickLine={false} axisLine={{ stroke: "#E2E8F0" }} />
+                <XAxis dataKey="name" tick={{ fontSize: 11, fill: ct.axisTick }} tickLine={false} axisLine={{ stroke: ct.axisLine }} />
+                <YAxis tick={{ fontSize: 11, fill: ct.axisTick }} tickLine={false} axisLine={{ stroke: ct.axisLine }} />
                 <Tooltip
-                  cursor={{ fill: "#F1F5F9" }}
-                  contentStyle={{ background: "#fff", border: "1px solid #E2E8F0", borderRadius: 2, fontSize: 12 }}
+                  cursor={{ fill: ct.cursor }}
+                  contentStyle={ct.tooltip}
                 />
                 <Bar dataKey="value" fill="#FF6600" radius={[2, 2, 0, 0]} />
               </BarChart>
@@ -146,7 +148,7 @@ export default function Home() {
                     <Cell key={entry.name} fill={CHART_COLORS[domainData.indexOf(entry) % CHART_COLORS.length]} />
                   ))}
                 </Pie>
-                <Tooltip contentStyle={{ background: "#fff", border: "1px solid #E2E8F0", borderRadius: 2, fontSize: 12 }} />
+                <Tooltip contentStyle={ct.tooltip} />
                 <Legend wrapperStyle={{ fontSize: 10 }} iconSize={8} />
               </PieChart>
             </ResponsiveContainer>
