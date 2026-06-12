@@ -17,7 +17,7 @@ export default function Onboarding() {
       <header className="bg-grid relative border border-slate-200 rounded-sm overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-white via-white/95 to-transparent" />
         <div className="relative px-8 py-10 max-w-3xl">
-          <div className="text-[10px] uppercase tracking-[0.25em] text-blue-700 font-bold mb-3">Start Here</div>
+          <div className="text-[10px] uppercase tracking-[0.25em] text-brand-700 font-bold mb-3">Start Here</div>
           <h1 className="font-display text-4xl sm:text-5xl font-light tracking-tighter leading-tight">
             A 5-minute tour of OpenView.
           </h1>
@@ -32,7 +32,7 @@ export default function Onboarding() {
         <div className="space-y-4">
           {STEPS.map((s) => (
             <div key={s.n} className="bg-white border border-slate-200 rounded-sm p-6 flex gap-6">
-              <div className="font-mono text-3xl font-medium text-blue-600 leading-none shrink-0 w-12">{s.n}</div>
+              <div className="font-mono text-3xl font-medium text-brand-600 leading-none shrink-0 w-12">{s.n}</div>
               <div>
                 <h3 className="font-display text-xl font-medium text-slate-900">{s.title}</h3>
                 <p className="mt-2 text-sm text-slate-600 leading-relaxed">{s.body}</p>
@@ -46,27 +46,27 @@ export default function Onboarding() {
             <div className="space-y-3">
               <button
                 onClick={() => navigate("/explore")}
-                className="w-full text-left p-3 border border-slate-200 rounded-sm hover:border-slate-900 transition-colors group flex items-center justify-between"
+                className="w-full text-left p-3 border border-slate-200 rounded-sm hover:border-brand-600 transition-colors group flex items-center justify-between"
                 data-testid="onboarding-explore"
               >
-                <span className="flex items-center gap-2 text-sm font-medium"><Compass className="w-4 h-4 text-blue-600" /> Explore Initiatives</span>
-                <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-blue-700" />
+                <span className="flex items-center gap-2 text-sm font-medium"><Compass className="w-4 h-4 text-brand-600" /> Explore Initiatives</span>
+                <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-brand-700" />
               </button>
               <button
                 onClick={() => navigate("/assets")}
-                className="w-full text-left p-3 border border-slate-200 rounded-sm hover:border-slate-900 transition-colors group flex items-center justify-between"
+                className="w-full text-left p-3 border border-slate-200 rounded-sm hover:border-brand-600 transition-colors group flex items-center justify-between"
                 data-testid="onboarding-assets"
               >
-                <span className="flex items-center gap-2 text-sm font-medium"><Layers className="w-4 h-4 text-blue-600" /> Browse Assets</span>
-                <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-blue-700" />
+                <span className="flex items-center gap-2 text-sm font-medium"><Layers className="w-4 h-4 text-brand-600" /> Browse Assets</span>
+                <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-brand-700" />
               </button>
               <button
                 onClick={() => navigate("/submit")}
-                className="w-full text-left p-3 border border-slate-200 rounded-sm hover:border-slate-900 transition-colors group flex items-center justify-between"
+                className="w-full text-left p-3 border border-slate-200 rounded-sm hover:border-brand-600 transition-colors group flex items-center justify-between"
                 data-testid="onboarding-submit"
               >
-                <span className="flex items-center gap-2 text-sm font-medium"><Plus className="w-4 h-4 text-blue-600" /> Submit Initiative</span>
-                <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-blue-700" />
+                <span className="flex items-center gap-2 text-sm font-medium"><Plus className="w-4 h-4 text-brand-600" /> Submit Initiative</span>
+                <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-brand-700" />
               </button>
             </div>
           </SectionBlock>
@@ -75,7 +75,7 @@ export default function Onboarding() {
             <ul className="space-y-2 text-sm">
               {["Submission guidelines", "Reusability scoring rubric", "Maturity definitions", "Leadership cadence"].map((d) => (
                 <li key={d}>
-                  <a href="#" className="text-slate-700 hover:text-blue-700 flex items-center gap-2">
+                  <a href="#" className="text-slate-700 hover:text-brand-700 flex items-center gap-2">
                     <BookOpen className="w-3.5 h-3.5" /> {d}
                   </a>
                 </li>

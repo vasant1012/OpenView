@@ -22,7 +22,7 @@ export default function MetricCard({ label, value, sublabel, trend, icon: Icon, 
         </div>
         <div className="flex items-center gap-1.5">
           {Icon && <Icon className="w-3.5 h-3.5 text-slate-400" />}
-          <ArrowUpRight className="w-3.5 h-3.5 text-slate-300 group-hover:text-blue-600 transition-colors" />
+          <ArrowUpRight className="w-3.5 h-3.5 text-slate-300 group-hover:text-brand-600 transition-colors" />
         </div>
       </div>
       <div className="mt-6 flex items-end gap-3">

@@ -83,7 +83,7 @@ export default function Assets() {
               <> · linked to <span className="font-medium text-slate-700">{projectMap[linkedProject]}</span>
                 <button
                   onClick={() => setParams({})}
-                  className="text-blue-700 ml-2 hover:underline"
+                  className="text-brand-700 ml-2 hover:underline"
                   data-testid="clear-project-filter"
                 >Clear</button>
               </>
@@ -96,7 +96,7 @@ export default function Assets() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search assets…"
-            className="h-9 pl-9 pr-3 w-72 text-sm border border-slate-200 rounded-sm focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600/15 bg-white"
+            className="h-9 pl-9 pr-3 w-72 text-sm border border-slate-200 rounded-sm focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/15 bg-white"
             data-testid="assets-search-input"
           />
         </div>

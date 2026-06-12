@@ -19,7 +19,7 @@ export default function AssetCard({ asset, projectName }) {
     >
       <div className="flex items-start justify-between gap-3">
         <div className="flex items-start gap-3">
-          <div className="w-10 h-10 bg-slate-900 text-white flex items-center justify-center rounded-sm font-mono text-xs">
+          <div className="w-10 h-10 bg-brand-600 text-white flex items-center justify-center rounded-sm font-mono text-xs">
             {TYPE_ICONS[asset.type] || "•"}
           </div>
           <div>
@@ -65,7 +65,7 @@ export default function AssetCard({ asset, projectName }) {
       <div className="mt-4 flex items-center gap-2">
         <button
           onClick={() => navigate(`/assets/${asset.id}`)}
-          className="flex-1 h-8 text-xs font-medium border border-slate-200 hover:border-slate-900 hover:bg-slate-900 hover:text-white transition-colors rounded-sm flex items-center justify-center gap-1.5"
+          className="flex-1 h-8 text-xs font-medium border border-slate-200 hover:border-brand-600 hover:bg-brand-600 hover:text-white transition-colors rounded-sm flex items-center justify-center gap-1.5"
           data-testid={`view-asset-${asset.id}`}
         >
           View Asset <ArrowRight className="w-3 h-3" />
@@ -73,7 +73,7 @@ export default function AssetCard({ asset, projectName }) {
         {asset.projectId && (
           <button
             onClick={() => navigate(`/projects/${asset.projectId}`)}
-            className="h-8 px-3 text-xs font-medium text-slate-700 hover:text-blue-700 border border-slate-200 hover:border-blue-600 rounded-sm transition-colors flex items-center gap-1"
+            className="h-8 px-3 text-xs font-medium text-slate-700 hover:text-brand-700 border border-slate-200 hover:border-brand-600 rounded-sm transition-colors flex items-center gap-1"
             data-testid={`open-project-${asset.id}`}
           >
             Project <ExternalLink className="w-3 h-3" />

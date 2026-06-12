@@ -44,7 +44,7 @@ export default function Leadership() {
   return (
     <div className="space-y-8" data-testid="leadership-page">
       <header>
-        <div className="text-[10px] uppercase tracking-[0.25em] text-blue-700 font-bold mb-2">Executive View</div>
+        <div className="text-[10px] uppercase tracking-[0.25em] text-brand-700 font-bold mb-2">Executive View</div>
         <h1 className="font-display text-4xl font-light tracking-tighter">Portfolio health & posture</h1>
         <p className="text-sm text-slate-500 mt-2 max-w-2xl">
           Curated rollup for leadership cadence. Drill into any tile to inspect the underlying initiatives.
@@ -142,7 +142,7 @@ export default function Leadership() {
                   <div className="text-sm font-medium">{p.name}</div>
                   <div className="text-xs text-slate-500">{p.domain} · owner {p.owner?.name}</div>
                 </div>
-                <button onClick={() => navigate(`/projects/${p.id}`)} className="text-xs text-blue-700 hover:underline">Open</button>
+                <button onClick={() => navigate(`/projects/${p.id}`)} className="text-xs text-brand-700 hover:underline">Open</button>
               </li>
             ))}
           </ul>

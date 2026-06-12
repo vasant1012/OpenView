@@ -18,7 +18,7 @@ export default function AssetDetail() {
     return (
       <div className="text-center py-20" data-testid="asset-not-found">
         <p className="text-slate-500">Asset not found.</p>
-        <button onClick={() => navigate("/assets")} className="mt-4 text-blue-700">Back to library</button>
+        <button onClick={() => navigate("/assets")} className="mt-4 text-brand-700">Back to library</button>
       </div>
     );
   }
@@ -42,7 +42,7 @@ export default function AssetDetail() {
               <Tag variant="blue">{asset.capability}</Tag>
               <Tag>{asset.maturity}</Tag>
               {project && (
-                <Link to={`/projects/${project.id}`} className="text-xs text-blue-700 hover:underline ml-1">
+                <Link to={`/projects/${project.id}`} className="text-xs text-brand-700 hover:underline ml-1">
                   ↳ {project.name}
                 </Link>
               )}
@@ -50,13 +50,13 @@ export default function AssetDetail() {
           </div>
           <div className="flex flex-col gap-2 min-w-[200px]">
             <button
-              className="bg-slate-900 text-white text-sm font-medium px-4 h-10 rounded-sm hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"
+              className="bg-brand-600 text-white text-sm font-medium px-4 h-10 rounded-sm hover:bg-brand-700 transition-colors flex items-center justify-center gap-2"
               data-testid="open-asset-cta"
             >
               <PlayCircle className="w-4 h-4" /> {asset.demoAvailable ? "Open Demo" : "Open Asset"}
             </button>
             <button
-              className="bg-white text-slate-900 text-sm font-medium px-4 h-10 rounded-sm border border-slate-300 hover:border-slate-900 transition-colors flex items-center justify-center gap-2"
+              className="bg-white text-slate-900 text-sm font-medium px-4 h-10 rounded-sm border border-slate-300 hover:border-brand-600 transition-colors flex items-center justify-center gap-2"
               data-testid="download-asset-cta"
             >
               <Download className="w-4 h-4" /> Download bundle
@@ -83,7 +83,7 @@ export default function AssetDetail() {
                   {asset.reuseScore}<span className="text-slate-400 text-lg">/100</span>
                 </div>
                 <div className="mt-2 h-1 bg-slate-100 rounded-sm overflow-hidden">
-                  <div className="h-full bg-blue-600" style={{ width: `${asset.reuseScore}%` }} />
+                  <div className="h-full bg-brand-600" style={{ width: `${asset.reuseScore}%` }} />
                 </div>
               </div>
               <Field label="Demo" value={asset.demoAvailable ? "Available" : "Not available"} />
@@ -109,7 +109,7 @@ export default function AssetDetail() {
             <ul className="space-y-2">
               {asset.docs.map((d) => (
                 <li key={d}>
-                  <a href="#" className="text-sm text-slate-700 hover:text-blue-700 flex items-center gap-2">
+                  <a href="#" className="text-sm text-slate-700 hover:text-brand-700 flex items-center gap-2">
                     <ExternalLink className="w-3.5 h-3.5" /> {d}
                   </a>
                 </li>
@@ -134,7 +134,7 @@ export default function AssetDetail() {
                   data-testid={`related-asset-${r.id}`}
                 >
                   <div className="text-[10px] font-mono text-slate-400">{r.type.toUpperCase()}</div>
-                  <div className="text-sm font-medium text-slate-900 group-hover:text-blue-700">{r.name}</div>
+                  <div className="text-sm font-medium text-slate-900 group-hover:text-brand-700">{r.name}</div>
                   <div className="text-xs text-slate-500 line-clamp-1">{r.description}</div>
                 </Link>
               ))}

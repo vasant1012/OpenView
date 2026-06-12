@@ -100,7 +100,7 @@ export default function Submit() {
       ><ChevronLeft className="w-4 h-4" /> Back</button>
 
       <header>
-        <div className="text-[10px] uppercase tracking-[0.25em] text-blue-700 font-bold mb-2">
+        <div className="text-[10px] uppercase tracking-[0.25em] text-brand-700 font-bold mb-2">
           {isEdit ? "Edit Initiative" : "New Initiative"}
         </div>
         <h1 className="font-display text-4xl font-light tracking-tighter">
@@ -183,7 +183,7 @@ export default function Submit() {
                   type="checkbox"
                   checked={form.reusable}
                   onChange={(e) => set("reusable", e.target.checked)}
-                  className="w-4 h-4 accent-blue-600"
+                  className="w-4 h-4 accent-brand-600"
                   data-testid="form-reusable"
                 />
                 Mark this initiative as reusable
@@ -195,7 +195,7 @@ export default function Submit() {
                   type="checkbox"
                   checked={form.demoAvailable}
                   onChange={(e) => set("demoAvailable", e.target.checked)}
-                  className="w-4 h-4 accent-blue-600"
+                  className="w-4 h-4 accent-brand-600"
                   data-testid="form-demo"
                 />
                 A demo is currently available
@@ -233,7 +233,7 @@ export default function Submit() {
             </button>
             <button
               type="submit"
-              className="h-10 px-5 text-sm font-medium bg-slate-900 text-white rounded-sm hover:bg-blue-700 transition-colors flex items-center gap-2"
+              className="h-10 px-5 text-sm font-medium bg-brand-600 text-white rounded-sm hover:bg-brand-700 transition-colors flex items-center gap-2"
               data-testid="form-submit"
             >
               <Save className="w-4 h-4" /> {isEdit ? "Save changes" : "Submit initiative"}
@@ -245,8 +245,8 @@ export default function Submit() {
   );
 }
 
-const inputCls = "w-full h-10 px-3 text-sm border border-slate-200 rounded-sm bg-white focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600/15";
-const textareaCls = "w-full px-3 py-2 text-sm border border-slate-200 rounded-sm bg-white focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600/15 leading-relaxed";
+const inputCls = "w-full h-10 px-3 text-sm border border-slate-200 rounded-sm bg-white focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/15";
+const textareaCls = "w-full px-3 py-2 text-sm border border-slate-200 rounded-sm bg-white focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/15 leading-relaxed";
 
 function Field({ label, children, full = false }) {
   return (

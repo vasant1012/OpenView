@@ -10,8 +10,8 @@ export default function CTAButtonGroup({ actions }) {
           onClick={() => navigate(a.to)}
           className={`group text-left p-5 border rounded-sm transition-all duration-200 hover:-translate-y-[1px] ${
             a.primary
-              ? "bg-slate-900 text-white border-slate-900 hover:bg-blue-700 hover:border-blue-700"
-              : "bg-white text-slate-900 border-slate-200 hover:border-slate-900"
+              ? "bg-brand-600 text-white border-brand-600 hover:bg-brand-700 hover:border-brand-700"
+              : "bg-white text-slate-900 border-slate-200 hover:border-brand-600"
           }`}
           data-testid={`cta-${a.label.toLowerCase().replace(/\s/g, "-")}`}
         >

@@ -123,7 +123,7 @@ export default function Explore() {
                 setParams(sp, { replace: true });
               }}
               placeholder="Search by name, problem, domain…"
-              className="h-9 pl-9 pr-3 w-72 text-sm border border-slate-200 rounded-sm focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600/15 bg-white"
+              className="h-9 pl-9 pr-3 w-72 text-sm border border-slate-200 rounded-sm focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/15 bg-white"
               data-testid="explore-search-input"
             />
           </div>
@@ -166,7 +166,7 @@ export default function Explore() {
               <p className="text-sm text-slate-500 mt-1">Try clearing some filters or searching differently.</p>
               <button
                 onClick={clearAll}
-                className="mt-4 text-sm text-blue-700 hover:text-blue-800"
+                className="mt-4 text-sm text-brand-700 hover:text-brand-800"
                 data-testid="empty-clear"
               >Clear all filters</button>
             </div>

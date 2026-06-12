@@ -63,12 +63,12 @@ export default function Layout({ children }) {
             className="flex items-center gap-2 group"
             data-testid="logo-link"
           >
-            <div className="w-8 h-8 bg-slate-900 text-white flex items-center justify-center rounded-sm">
+            <div className="w-8 h-8 bg-brand-600 text-white flex items-center justify-center rounded-sm">
               <Sparkles className="w-4 h-4" />
             </div>
             <div className="leading-tight">
               <div className="font-display text-sm font-semibold tracking-tight">
-                Tavant <span className="text-blue-600">AI</span>
+                Tavant <span className="text-brand-600">AI</span>
               </div>
               <div className="text-[10px] uppercase tracking-[0.2em] text-slate-500 -mt-0.5">
                 OpenView
@@ -112,7 +112,7 @@ export default function Layout({ children }) {
                 onFocus={() => setOpen(true)}
                 onBlur={() => setTimeout(() => setOpen(false), 150)}
                 placeholder="Search initiatives, assets, capabilities…"
-                className="w-full h-9 pl-9 pr-3 text-sm bg-slate-50 border border-slate-200 rounded-sm focus:border-blue-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600/15"
+                className="w-full h-9 pl-9 pr-3 text-sm bg-slate-50 border border-slate-200 rounded-sm focus:border-brand-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-600/15"
                 data-testid="global-search-input"
               />
             </div>
@@ -165,7 +165,7 @@ export default function Layout({ children }) {
 
           <Button
             onClick={() => navigate("/submit")}
-            className="bg-blue-600 hover:bg-blue-700 text-white rounded-sm h-9"
+            className="bg-brand-600 hover:bg-brand-700 text-white rounded-sm h-9"
             data-testid="header-submit-button"
           >
             <Plus className="w-4 h-4 mr-1.5" /> Submit

@@ -31,7 +31,7 @@ export default function FilterPanel({ groups, selected, onToggle, onClear }) {
               <span className="flex items-center gap-2">
                 {g.label}
                 {selected[g.key]?.size > 0 && (
-                  <span className="bg-blue-600 text-white text-[9px] font-mono px-1.5 rounded-sm">
+                  <span className="bg-brand-600 text-white text-[9px] font-mono px-1.5 rounded-sm">
                     {selected[g.key].size}
                   </span>
                 )}
@@ -53,7 +53,7 @@ export default function FilterPanel({ groups, selected, onToggle, onClear }) {
                         checked={checked}
                         onCheckedChange={() => onToggle(g.key, opt)}
                         data-testid={`filter-${g.key}-${opt.toLowerCase().replace(/\s/g, "-")}`}
-                        className="rounded-sm data-[state=checked]:bg-blue-600 data-[state=checked]:border-blue-600"
+                        className="rounded-sm data-[state=checked]:bg-brand-600 data-[state=checked]:border-brand-600"
                       />
                       <span className="leading-none">{opt}</span>
                     </label>

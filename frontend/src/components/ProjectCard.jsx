@@ -48,7 +48,7 @@ export default function ProjectCard({ project, assetsCount = 0 }) {
 
       <div className="mt-5 flex items-center justify-between border-t border-slate-100 pt-4">
         <div className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-full bg-slate-900 text-white text-[10px] font-medium flex items-center justify-center">
+          <div className="w-7 h-7 rounded-full bg-brand-600 text-white text-[10px] font-medium flex items-center justify-center">
             {initials}
           </div>
           <div className="text-xs">
@@ -58,7 +58,7 @@ export default function ProjectCard({ project, assetsCount = 0 }) {
         </div>
         <div className="flex items-center gap-2">
           {project.demoAvailable && (
-            <span title="Demo available" className="text-blue-600"><PlayCircle className="w-4 h-4" /></span>
+            <span title="Demo available" className="text-brand-600"><PlayCircle className="w-4 h-4" /></span>
           )}
           {project.reusable && (
             <span title="Reusable" className="text-emerald-600"><Sparkles className="w-4 h-4" /></span>
@@ -73,14 +73,14 @@ export default function ProjectCard({ project, assetsCount = 0 }) {
       <div className="mt-4 flex items-center gap-2">
         <button
           onClick={() => navigate(`/projects/${project.id}`)}
-          className="flex-1 h-8 text-xs font-medium border border-slate-200 hover:border-slate-900 hover:bg-slate-900 hover:text-white transition-colors rounded-sm flex items-center justify-center gap-1.5"
+          className="flex-1 h-8 text-xs font-medium border border-slate-200 hover:border-brand-600 hover:bg-brand-600 hover:text-white transition-colors rounded-sm flex items-center justify-center gap-1.5"
           data-testid={`view-details-${project.id}`}
         >
           View Details <ArrowRight className="w-3 h-3" />
         </button>
         <button
           onClick={() => navigate(`/assets?project=${project.id}`)}
-          className="h-8 px-3 text-xs font-medium text-slate-700 hover:text-blue-700 border border-slate-200 hover:border-blue-600 rounded-sm transition-colors"
+          className="h-8 px-3 text-xs font-medium text-slate-700 hover:text-brand-700 border border-slate-200 hover:border-brand-600 rounded-sm transition-colors"
           data-testid={`open-assets-${project.id}`}
         >
           Open Assets

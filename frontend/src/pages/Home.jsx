@@ -73,12 +73,12 @@ export default function Home() {
       <div className="bg-grid relative border border-slate-200 rounded-sm overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-white via-white/95 to-transparent" />
         <div className="relative px-8 py-10 lg:py-14 max-w-3xl">
-          <div className="text-[10px] uppercase tracking-[0.25em] text-blue-700 font-bold mb-3">
+          <div className="text-[10px] uppercase tracking-[0.25em] text-brand-700 font-bold mb-3">
             Internal AI Portfolio · Live
           </div>
           <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-light tracking-tighter text-slate-900 leading-[1.05]">
             One window into every<br />
-            <span className="text-blue-600 font-medium">AI initiative</span> we ship.
+            <span className="text-brand-600 font-medium">AI initiative</span> we ship.
           </h1>
           <p className="mt-5 text-base text-slate-600 leading-relaxed max-w-xl">
             Tavant AI OpenView is the centralized hub for our POCs, MVPs and products —
@@ -87,14 +87,14 @@ export default function Home() {
           <div className="mt-7 flex flex-wrap gap-3">
             <button
               onClick={() => navigate("/explore")}
-              className="bg-slate-900 text-white text-sm font-medium px-5 h-10 rounded-sm hover:bg-blue-700 transition-colors flex items-center gap-2"
+              className="bg-brand-600 text-white text-sm font-medium px-5 h-10 rounded-sm hover:bg-brand-700 transition-colors flex items-center gap-2"
               data-testid="hero-explore-button"
             >
               Explore Initiatives <ArrowRight className="w-4 h-4" />
             </button>
             <button
               onClick={() => navigate("/submit")}
-              className="bg-white text-slate-900 text-sm font-medium px-5 h-10 rounded-sm border border-slate-300 hover:border-slate-900 transition-colors"
+              className="bg-white text-slate-900 text-sm font-medium px-5 h-10 rounded-sm border border-slate-300 hover:border-brand-600 transition-colors"
               data-testid="hero-submit-button"
             >
               Submit Initiative
@@ -163,7 +163,7 @@ export default function Home() {
                   key={c.name}
                   onClick={() => navigate(`/explore?capability=${encodeURIComponent(c.name)}`)}
                   style={{ fontSize: `${size}px`, color: `rgba(15,23,42,${opacity})` }}
-                  className="font-display font-medium hover:text-blue-700 transition-colors px-1"
+                  className="font-display font-medium hover:text-brand-700 transition-colors px-1"
                   data-testid={`tag-${c.name.toLowerCase().replace(/\s/g, "-")}`}
                 >
                   {c.name}
@@ -196,7 +196,7 @@ export default function Home() {
                   onClick={() => u.projectId && navigate(`/projects/${u.projectId}`)}
                   className="w-full text-left flex items-start gap-3 group-hover:text-slate-900"
                 >
-                  <div className="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 shrink-0" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-brand-600 mt-1.5 shrink-0" />
                   <div className="flex-1 min-w-0">
                     <div className="text-slate-900 text-sm font-medium truncate">{u.project}</div>
                     <div className="text-xs text-slate-500 flex items-center gap-2 mt-0.5">
@@ -222,7 +222,7 @@ export default function Home() {
           </div>
           <button
             onClick={() => navigate("/explore?reusable=true")}
-            className="text-sm text-blue-700 hover:text-blue-800 flex items-center gap-1"
+            className="text-sm text-brand-700 hover:text-brand-800 flex items-center gap-1"
             data-testid="see-all-featured"
           >
             See all <ArrowRight className="w-3.5 h-3.5" />
@@ -237,7 +237,7 @@ export default function Home() {
 
       {/* Onboarding block */}
       <section
-        className="relative border border-slate-200 rounded-sm overflow-hidden bg-slate-900 text-white"
+        className="relative border border-slate-200 rounded-sm overflow-hidden bg-brand-600 text-white"
         data-testid="onboarding-block"
       >
         <div
@@ -246,7 +246,7 @@ export default function Home() {
         />
         <div className="relative px-8 py-10 grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
           <div className="lg:col-span-2">
-            <div className="text-[10px] uppercase tracking-[0.25em] text-blue-300 font-bold mb-3">
+            <div className="text-[10px] uppercase tracking-[0.25em] text-brand-200 font-bold mb-3">
               Start Here
             </div>
             <h3 className="font-display text-3xl font-light tracking-tight leading-tight">
@@ -260,7 +260,7 @@ export default function Home() {
           <div className="flex flex-col gap-2">
             <button
               onClick={() => navigate("/onboarding")}
-              className="bg-white text-slate-900 text-sm font-medium px-5 h-10 rounded-sm hover:bg-blue-50 transition-colors flex items-center justify-center gap-2"
+              className="bg-white text-slate-900 text-sm font-medium px-5 h-10 rounded-sm hover:bg-brand-50 transition-colors flex items-center justify-center gap-2"
               data-testid="onboarding-start-button"
             >
               <BookOpen className="w-4 h-4" /> Start the guide

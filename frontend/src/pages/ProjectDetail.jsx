@@ -36,7 +36,7 @@ export default function ProjectDetail() {
     return (
       <div className="text-center py-20" data-testid="project-not-found">
         <p className="text-slate-500">Initiative not found.</p>
-        <button onClick={() => navigate("/explore")} className="mt-4 text-blue-700">Back to Explore</button>
+        <button onClick={() => navigate("/explore")} className="mt-4 text-brand-700">Back to Explore</button>
       </div>
     );
   }
@@ -69,21 +69,21 @@ export default function ProjectDetail() {
           <div className="flex flex-col gap-2 min-w-[200px]">
             <button
               onClick={() => navigate(`/assets?project=${project.id}`)}
-              className="bg-slate-900 text-white text-sm font-medium px-4 h-10 rounded-sm hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"
+              className="bg-brand-600 text-white text-sm font-medium px-4 h-10 rounded-sm hover:bg-brand-700 transition-colors flex items-center justify-center gap-2"
               data-testid="view-assets-cta"
             >
               <Layers className="w-4 h-4" /> View Assets ({linkedAssets.length})
             </button>
             <button
               onClick={() => navigate(`/submit/${project.id}`)}
-              className="bg-white text-slate-900 text-sm font-medium px-4 h-10 rounded-sm border border-slate-300 hover:border-slate-900 transition-colors flex items-center justify-center gap-2"
+              className="bg-white text-slate-900 text-sm font-medium px-4 h-10 rounded-sm border border-slate-300 hover:border-brand-600 transition-colors flex items-center justify-center gap-2"
               data-testid="suggest-update-cta"
             >
               <Pencil className="w-4 h-4" /> Suggest Update
             </button>
             <button
               onClick={() => navigate(`/explore?capability=${encodeURIComponent(project.capability)}`)}
-              className="bg-white text-slate-700 text-sm font-medium px-4 h-10 rounded-sm border border-slate-200 hover:border-slate-900 hover:text-slate-900 transition-colors flex items-center justify-center gap-2"
+              className="bg-white text-slate-700 text-sm font-medium px-4 h-10 rounded-sm border border-slate-200 hover:border-brand-600 hover:text-slate-900 transition-colors flex items-center justify-center gap-2"
               data-testid="compare-cta"
             >
               <GitCompare className="w-4 h-4" /> Compare similar
@@ -150,11 +150,11 @@ export default function ProjectDetail() {
                     <Link
                       key={a.id}
                       to={`/assets/${a.id}`}
-                      className="border border-slate-200 rounded-sm p-4 hover:border-slate-900 transition-colors group"
+                      className="border border-slate-200 rounded-sm p-4 hover:border-brand-600 transition-colors group"
                       data-testid={`linked-asset-${a.id}`}
                     >
                       <div className="text-[10px] font-mono text-slate-400">{a.type.toUpperCase()}</div>
-                      <div className="font-medium text-slate-900 group-hover:text-blue-700">{a.name}</div>
+                      <div className="font-medium text-slate-900 group-hover:text-brand-700">{a.name}</div>
                       <div className="text-xs text-slate-500 mt-1 line-clamp-2">{a.description}</div>
                     </Link>
                   ))}
@@ -198,7 +198,7 @@ export default function ProjectDetail() {
             <div className="space-y-3">
               {team.map((m) => (
                 <div key={m.name} className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-slate-900 text-white text-[10px] font-medium flex items-center justify-center">
+                  <div className="w-8 h-8 rounded-full bg-brand-600 text-white text-[10px] font-medium flex items-center justify-center">
                     {m.initials}
                   </div>
                   <div className="text-sm">
@@ -219,7 +219,7 @@ export default function ProjectDetail() {
                 <Link
                   key={p.id}
                   to={`/projects/${p.id}`}
-                  className="flex items-center justify-between text-sm text-slate-700 hover:text-blue-700 group"
+                  className="flex items-center justify-between text-sm text-slate-700 hover:text-brand-700 group"
                   data-testid={`similar-${p.id}`}
                 >
                   <span className="truncate">{p.name}</span>
