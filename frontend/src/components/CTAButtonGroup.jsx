@@ -11,7 +11,7 @@ export default function CTAButtonGroup({ actions }) {
           className={`group text-left p-5 border rounded-sm transition-all duration-200 hover:-translate-y-[1px] ${
             a.primary
               ? "bg-brand-600 text-white border-brand-600 hover:bg-brand-700 hover:border-brand-700"
-              : "bg-white text-slate-900 border-slate-200 hover:border-brand-600"
+              : "bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border-slate-200 dark:border-slate-800 hover:border-brand-600"
           }`}
           data-testid={`cta-${a.label.toLowerCase().replace(/\s/g, "-")}`}
         >
@@ -19,7 +19,7 @@ export default function CTAButtonGroup({ actions }) {
             <a.icon className="w-4 h-4" />
             <span className="text-sm font-medium">{a.label}</span>
           </div>
-          <div className={`text-xs mt-2 ${a.primary ? "text-slate-300" : "text-slate-500"}`}>
+          <div className={`text-xs mt-2 ${a.primary ? "text-slate-300" : "text-slate-500 dark:text-slate-400 dark:text-slate-500"}`}>
             {a.description}
           </div>
         </button>

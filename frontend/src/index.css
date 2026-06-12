@@ -11,6 +11,12 @@ body {
     -moz-osx-font-smoothing: grayscale;
     background: #f8fafc;
     color: #0f172a;
+    transition: background-color 200ms ease, color 200ms ease;
+}
+
+html.dark body {
+    background: #020617;
+    color: #e2e8f0;
 }
 
 h1, h2, h3, h4, h5, h6, .font-display {
@@ -69,11 +75,23 @@ h1, h2, h3, h4, h5, h6, .font-display {
     background-size: 32px 32px;
 }
 
+html.dark .bg-grid {
+    background-image:
+        linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+}
+
 .bg-grid-dense {
     background-image:
         linear-gradient(to right, rgba(15, 23, 42, 0.05) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(15, 23, 42, 0.05) 1px, transparent 1px);
     background-size: 16px 16px;
+}
+
+html.dark .bg-grid-dense {
+    background-image:
+        linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
 }
 
 .scrollbar-hide::-webkit-scrollbar { display: none; }

@@ -9,15 +9,15 @@ export default function FilterPanel({ groups, selected, onToggle, onClear }) {
   );
 
   return (
-    <aside className="bg-white border border-slate-200 rounded-sm" data-testid="filter-panel">
-      <div className="px-5 py-3 border-b border-slate-200 flex items-center justify-between">
-        <div className="text-[10px] uppercase tracking-[0.2em] font-bold text-slate-700">
+    <aside className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-sm" data-testid="filter-panel">
+      <div className="px-5 py-3 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+        <div className="text-[10px] uppercase tracking-[0.2em] font-bold text-slate-700 dark:text-slate-300">
           Filters
         </div>
         {totalActive > 0 && (
           <button
             onClick={onClear}
-            className="text-[11px] text-slate-500 hover:text-slate-900 flex items-center gap-1"
+            className="text-[11px] text-slate-500 dark:text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-slate-100 dark:text-slate-100 flex items-center gap-1"
             data-testid="filter-clear-all"
           >
             <X className="w-3 h-3" /> Clear {totalActive}
@@ -26,8 +26,8 @@ export default function FilterPanel({ groups, selected, onToggle, onClear }) {
       </div>
       <Accordion type="multiple" defaultValue={groups.map((g) => g.key)} className="px-2">
         {groups.map((g) => (
-          <AccordionItem key={g.key} value={g.key} className="border-b border-slate-100 last:border-b-0">
-            <AccordionTrigger className="px-3 py-3 text-xs font-medium uppercase tracking-wider text-slate-700 hover:no-underline">
+          <AccordionItem key={g.key} value={g.key} className="border-b border-slate-100 dark:border-slate-800/60 last:border-b-0">
+            <AccordionTrigger className="px-3 py-3 text-xs font-medium uppercase tracking-wider text-slate-700 dark:text-slate-300 hover:no-underline">
               <span className="flex items-center gap-2">
                 {g.label}
                 {selected[g.key]?.size > 0 && (
@@ -46,7 +46,7 @@ export default function FilterPanel({ groups, selected, onToggle, onClear }) {
                     <label
                       key={opt}
                       htmlFor={id}
-                      className="flex items-center gap-2 text-sm text-slate-700 cursor-pointer hover:text-slate-900"
+                      className="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-300 cursor-pointer hover:text-slate-900 dark:hover:text-slate-100 dark:text-slate-100"
                     >
                       <Checkbox
                         id={id}

@@ -35,8 +35,8 @@ export default function ProjectDetail() {
   if (!project) {
     return (
       <div className="text-center py-20" data-testid="project-not-found">
-        <p className="text-slate-500">Initiative not found.</p>
-        <button onClick={() => navigate("/explore")} className="mt-4 text-brand-700">Back to Explore</button>
+        <p className="text-slate-500 dark:text-slate-400 dark:text-slate-500">Initiative not found.</p>
+        <button onClick={() => navigate("/explore")} className="mt-4 text-brand-700 dark:text-brand-400">Back to Explore</button>
       </div>
     );
   }
@@ -45,19 +45,19 @@ export default function ProjectDetail() {
     <div className="space-y-6" data-testid={`project-detail-${id}`}>
       <button
         onClick={() => navigate(-1)}
-        className="text-sm text-slate-500 hover:text-slate-900 flex items-center gap-1"
+        className="text-sm text-slate-500 dark:text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-slate-100 dark:text-slate-100 flex items-center gap-1"
         data-testid="back-button"
       >
         <ChevronLeft className="w-4 h-4" /> Back
       </button>
 
       {/* Header */}
-      <header className="bg-white border border-slate-200 rounded-sm p-8">
+      <header className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-sm p-8">
         <div className="flex items-start justify-between gap-6 flex-wrap">
           <div className="max-w-2xl">
-            <div className="text-[10px] font-mono text-slate-400 tracking-wider mb-2">{project.id.toUpperCase()}</div>
+            <div className="text-[10px] font-mono text-slate-400 dark:text-slate-500 tracking-wider mb-2">{project.id.toUpperCase()}</div>
             <h1 className="font-display text-4xl font-light tracking-tighter leading-tight">{project.name}</h1>
-            <p className="mt-3 text-base text-slate-600 leading-relaxed">{project.description}</p>
+            <p className="mt-3 text-base text-slate-600 dark:text-slate-400 dark:text-slate-500 leading-relaxed">{project.description}</p>
             <div className="mt-4 flex flex-wrap gap-2">
               <StatusBadge status={project.status} />
               <Tag variant="blue">{project.domain}</Tag>
@@ -76,14 +76,14 @@ export default function ProjectDetail() {
             </button>
             <button
               onClick={() => navigate(`/submit/${project.id}`)}
-              className="bg-white text-slate-900 text-sm font-medium px-4 h-10 rounded-sm border border-slate-300 hover:border-brand-600 transition-colors flex items-center justify-center gap-2"
+              className="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 text-sm font-medium px-4 h-10 rounded-sm border border-slate-300 dark:border-slate-700 hover:border-brand-600 transition-colors flex items-center justify-center gap-2"
               data-testid="suggest-update-cta"
             >
               <Pencil className="w-4 h-4" /> Suggest Update
             </button>
             <button
               onClick={() => navigate(`/explore?capability=${encodeURIComponent(project.capability)}`)}
-              className="bg-white text-slate-700 text-sm font-medium px-4 h-10 rounded-sm border border-slate-200 hover:border-brand-600 hover:text-slate-900 transition-colors flex items-center justify-center gap-2"
+              className="bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 text-sm font-medium px-4 h-10 rounded-sm border border-slate-200 dark:border-slate-800 hover:border-brand-600 hover:text-slate-900 dark:hover:text-slate-100 dark:text-slate-100 transition-colors flex items-center justify-center gap-2"
               data-testid="compare-cta"
             >
               <GitCompare className="w-4 h-4" /> Compare similar
@@ -116,7 +116,7 @@ export default function ProjectDetail() {
               <Field label="AI Capability" value={project.capability} />
               <Field label="Data Type" value={project.dataType} />
               <div className="md:col-span-2">
-                <div className="text-[10px] uppercase tracking-[0.2em] text-slate-500 font-bold mb-2">Models / Frameworks</div>
+                <div className="text-[10px] uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400 dark:text-slate-500 font-bold mb-2">Models / Frameworks</div>
                 <div className="flex flex-wrap gap-2">
                   {project.models?.map((m) => <Tag key={m} variant="outline">{m}</Tag>)}
                 </div>
@@ -128,7 +128,7 @@ export default function ProjectDetail() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
               <Field label="Deployment" value={project.deployment} />
               <div>
-                <div className="text-[10px] uppercase tracking-[0.2em] text-slate-500 font-bold mb-2">Integrations</div>
+                <div className="text-[10px] uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400 dark:text-slate-500 font-bold mb-2">Integrations</div>
                 <div className="flex flex-wrap gap-2">
                   {project.integrations?.map((m) => <Tag key={m}>{m}</Tag>)}
                 </div>
@@ -150,17 +150,17 @@ export default function ProjectDetail() {
                     <Link
                       key={a.id}
                       to={`/assets/${a.id}`}
-                      className="border border-slate-200 rounded-sm p-4 hover:border-brand-600 transition-colors group"
+                      className="border border-slate-200 dark:border-slate-800 rounded-sm p-4 hover:border-brand-600 transition-colors group"
                       data-testid={`linked-asset-${a.id}`}
                     >
-                      <div className="text-[10px] font-mono text-slate-400">{a.type.toUpperCase()}</div>
-                      <div className="font-medium text-slate-900 group-hover:text-brand-700">{a.name}</div>
-                      <div className="text-xs text-slate-500 mt-1 line-clamp-2">{a.description}</div>
+                      <div className="text-[10px] font-mono text-slate-400 dark:text-slate-500">{a.type.toUpperCase()}</div>
+                      <div className="font-medium text-slate-900 dark:text-slate-100 group-hover:text-brand-700 dark:text-brand-400">{a.name}</div>
+                      <div className="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-500 mt-1 line-clamp-2">{a.description}</div>
                     </Link>
                   ))}
                 </div>
               ) : (
-                <p className="text-sm text-slate-500">No linked assets yet.</p>
+                <p className="text-sm text-slate-500 dark:text-slate-400 dark:text-slate-500">No linked assets yet.</p>
               )}
             </div>
           </SectionBlock>
@@ -168,16 +168,16 @@ export default function ProjectDetail() {
           <SectionBlock title="Insights">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
               <div>
-                <div className="text-[10px] uppercase tracking-[0.2em] text-slate-500 font-bold mb-2 flex items-center gap-1.5">
+                <div className="text-[10px] uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400 dark:text-slate-500 font-bold mb-2 flex items-center gap-1.5">
                   <Lightbulb className="w-3 h-3" /> Lessons learned
                 </div>
-                <p className="text-slate-700 leading-relaxed">{project.lessons}</p>
+                <p className="text-slate-700 dark:text-slate-300 leading-relaxed">{project.lessons}</p>
               </div>
               <div>
-                <div className="text-[10px] uppercase tracking-[0.2em] text-slate-500 font-bold mb-2 flex items-center gap-1.5">
+                <div className="text-[10px] uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400 dark:text-slate-500 font-bold mb-2 flex items-center gap-1.5">
                   <ShieldAlert className="w-3 h-3" /> Risks
                 </div>
-                <p className="text-slate-700 leading-relaxed">{project.risks}</p>
+                <p className="text-slate-700 dark:text-slate-300 leading-relaxed">{project.risks}</p>
               </div>
             </div>
           </SectionBlock>
@@ -202,8 +202,8 @@ export default function ProjectDetail() {
                     {m.initials}
                   </div>
                   <div className="text-sm">
-                    <div className="text-slate-900 font-medium">{m.name}</div>
-                    <div className="text-xs text-slate-500">{m.role}</div>
+                    <div className="text-slate-900 dark:text-slate-100 font-medium">{m.name}</div>
+                    <div className="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-500">{m.role}</div>
                   </div>
                 </div>
               ))}
@@ -212,23 +212,23 @@ export default function ProjectDetail() {
 
           <SectionBlock title="Discovery">
             <div className="space-y-2 text-sm">
-              <div className="text-[10px] uppercase tracking-[0.2em] text-slate-500 font-bold mb-1">Similar Projects</div>
+              <div className="text-[10px] uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400 dark:text-slate-500 font-bold mb-1">Similar Projects</div>
               {similar.length === 0 ? (
-                <p className="text-xs text-slate-500">No similar initiatives yet.</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-500">No similar initiatives yet.</p>
               ) : similar.map((p) => (
                 <Link
                   key={p.id}
                   to={`/projects/${p.id}`}
-                  className="flex items-center justify-between text-sm text-slate-700 hover:text-brand-700 group"
+                  className="flex items-center justify-between text-sm text-slate-700 dark:text-slate-300 hover:text-brand-700 dark:text-brand-400 group"
                   data-testid={`similar-${p.id}`}
                 >
                   <span className="truncate">{p.name}</span>
                   <ArrowRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
               ))}
-              <div className="pt-3 border-t border-slate-100">
+              <div className="pt-3 border-t border-slate-100 dark:border-slate-800/60">
                 <div className="text-[10px] uppercase tracking-[0.2em] text-slate-500 font-bold mb-2">Client Opportunities</div>
-                <p className="text-xs text-slate-600 leading-relaxed">
+                <p className="text-xs text-slate-600 dark:text-slate-400 dark:text-slate-500 leading-relaxed">
                   3 active opportunities in {project.domain} could leverage this initiative.
                 </p>
               </div>
@@ -243,11 +243,11 @@ export default function ProjectDetail() {
 function Field({ label, value, block = false }) {
   return (
     <div>
-      <div className="text-[10px] uppercase tracking-[0.2em] text-slate-500 font-bold mb-1">{label}</div>
+      <div className="text-[10px] uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400 dark:text-slate-500 font-bold mb-1">{label}</div>
       {block ? (
-        <p className="text-slate-700 leading-relaxed">{value || "—"}</p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">{value || "—"}</p>
       ) : (
-        <div className="text-slate-900 font-medium">{value || "—"}</div>
+        <div className="text-slate-900 dark:text-slate-100 font-medium">{value || "—"}</div>
       )}
     </div>
   );

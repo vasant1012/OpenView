@@ -95,18 +95,18 @@ export default function Submit() {
     <div className="space-y-6 max-w-4xl" data-testid="submit-page">
       <button
         onClick={() => navigate(-1)}
-        className="text-sm text-slate-500 hover:text-slate-900 flex items-center gap-1"
+        className="text-sm text-slate-500 dark:text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-slate-100 dark:text-slate-100 flex items-center gap-1"
         data-testid="submit-back"
       ><ChevronLeft className="w-4 h-4" /> Back</button>
 
       <header>
-        <div className="text-[10px] uppercase tracking-[0.25em] text-brand-700 font-bold mb-2">
+        <div className="text-[10px] uppercase tracking-[0.25em] text-brand-700 dark:text-brand-400 font-bold mb-2">
           {isEdit ? "Edit Initiative" : "New Initiative"}
         </div>
         <h1 className="font-display text-4xl font-light tracking-tighter">
           {isEdit ? form.name || "Update initiative" : "Submit a new initiative"}
         </h1>
-        <p className="text-sm text-slate-500 mt-2 max-w-2xl">
+        <p className="text-sm text-slate-500 dark:text-slate-400 dark:text-slate-500 mt-2 max-w-2xl">
           The more context you provide, the easier it is to find and reuse. Most fields are optional.
         </p>
       </header>
@@ -217,7 +217,7 @@ export default function Submit() {
               resetData();
               toast.success("Demo data reset");
             }}
-            className="text-xs text-slate-500 hover:text-slate-900 flex items-center gap-1.5"
+            className="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-slate-100 dark:text-slate-100 flex items-center gap-1.5"
             data-testid="reset-data"
           >
             <RotateCcw className="w-3.5 h-3.5" /> Reset demo data
@@ -226,7 +226,7 @@ export default function Submit() {
             <button
               type="button"
               onClick={() => navigate(-1)}
-              className="h-10 px-4 text-sm border border-slate-200 rounded-sm hover:border-slate-400 text-slate-700"
+              className="h-10 px-4 text-sm border border-slate-200 dark:border-slate-800 rounded-sm hover:border-slate-400 dark:hover:border-slate-500 text-slate-700 dark:text-slate-300"
               data-testid="form-cancel"
             >
               Cancel
@@ -245,13 +245,13 @@ export default function Submit() {
   );
 }
 
-const inputCls = "w-full h-10 px-3 text-sm border border-slate-200 rounded-sm bg-white focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/15";
-const textareaCls = "w-full px-3 py-2 text-sm border border-slate-200 rounded-sm bg-white focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/15 leading-relaxed";
+const inputCls = "w-full h-10 px-3 text-sm border border-slate-200 dark:border-slate-800 rounded-sm bg-white dark:bg-slate-900 focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/15";
+const textareaCls = "w-full px-3 py-2 text-sm border border-slate-200 dark:border-slate-800 rounded-sm bg-white dark:bg-slate-900 focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/15 leading-relaxed";
 
 function Field({ label, children, full = false }) {
   return (
     <div className={full ? "md:col-span-2" : ""}>
-      <div className="text-[10px] uppercase tracking-[0.2em] text-slate-500 font-bold mb-1.5">{label}</div>
+      <div className="text-[10px] uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400 dark:text-slate-500 font-bold mb-1.5">{label}</div>
       {children}
     </div>
   );
@@ -262,7 +262,7 @@ function Select({ value, onChange, options, testId }) {
     <select
       value={value}
       onChange={(e) => onChange(e.target.value)}
-      className={inputCls + " bg-white"}
+      className={inputCls + " bg-white dark:bg-slate-900"}
       data-testid={testId}
     >
       {options.map((o) => <option key={o} value={o}>{o}</option>)}

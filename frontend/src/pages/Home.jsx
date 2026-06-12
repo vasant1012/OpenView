@@ -70,17 +70,17 @@ export default function Home() {
   return (
     <div className="space-y-10" data-testid="home-page">
       {/* Hero */}
-      <div className="bg-grid relative border border-slate-200 rounded-sm overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-white via-white/95 to-transparent" />
+      <div className="bg-grid relative border border-slate-200 dark:border-slate-800 rounded-sm overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-white via-white/95 to-transparent dark:from-slate-950 dark:via-slate-950/95 dark:to-transparent" />
         <div className="relative px-8 py-10 lg:py-14 max-w-3xl">
-          <div className="text-[10px] uppercase tracking-[0.25em] text-brand-700 font-bold mb-3">
+          <div className="text-[10px] uppercase tracking-[0.25em] text-brand-700 dark:text-brand-400 font-bold mb-3">
             Internal AI Portfolio · Live
           </div>
-          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-light tracking-tighter text-slate-900 leading-[1.05]">
+          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-light tracking-tighter text-slate-900 dark:text-slate-100 leading-[1.05]">
             One window into every<br />
-            <span className="text-brand-600 font-medium">AI initiative</span> we ship.
+            <span className="text-brand-600 dark:text-brand-400 font-medium">AI initiative</span> we ship.
           </h1>
-          <p className="mt-5 text-base text-slate-600 leading-relaxed max-w-xl">
+          <p className="mt-5 text-base text-slate-600 dark:text-slate-400 dark:text-slate-500 leading-relaxed max-w-xl">
             Tavant AI OpenView is the centralized hub for our POCs, MVPs and products —
             discover reusable assets, track maturity, and accelerate the next build.
           </p>
@@ -94,7 +94,7 @@ export default function Home() {
             </button>
             <button
               onClick={() => navigate("/submit")}
-              className="bg-white text-slate-900 text-sm font-medium px-5 h-10 rounded-sm border border-slate-300 hover:border-brand-600 transition-colors"
+              className="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 text-sm font-medium px-5 h-10 rounded-sm border border-slate-300 dark:border-slate-700 hover:border-brand-600 transition-colors"
               data-testid="hero-submit-button"
             >
               Submit Initiative
@@ -107,7 +107,7 @@ export default function Home() {
       <section data-testid="kpi-section">
         <div className="flex items-baseline justify-between mb-4">
           <h2 className="font-display text-2xl font-medium tracking-tight">Portfolio at a glance</h2>
-          <span className="text-xs text-slate-500 font-mono">Updated 4m ago</span>
+          <span className="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-500 font-mono">Updated 4m ago</span>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           <MetricCard label="Total Initiatives" value={metrics.total} sublabel="Across 8 domains" icon={Activity} />
@@ -163,11 +163,11 @@ export default function Home() {
                   key={c.name}
                   onClick={() => navigate(`/explore?capability=${encodeURIComponent(c.name)}`)}
                   style={{ fontSize: `${size}px`, color: `rgba(15,23,42,${opacity})` }}
-                  className="font-display font-medium hover:text-brand-700 transition-colors px-1"
+                  className="font-display font-medium hover:text-brand-700 dark:text-brand-400 transition-colors px-1"
                   data-testid={`tag-${c.name.toLowerCase().replace(/\s/g, "-")}`}
                 >
                   {c.name}
-                  <span className="text-[10px] text-slate-400 font-mono ml-1 align-top">{c.count}</span>
+                  <span className="text-[10px] text-slate-400 dark:text-slate-500 font-mono ml-1 align-top">{c.count}</span>
                 </button>
               );
             })}
@@ -194,16 +194,16 @@ export default function Home() {
               <li key={u.id} className="text-sm group">
                 <button
                   onClick={() => u.projectId && navigate(`/projects/${u.projectId}`)}
-                  className="w-full text-left flex items-start gap-3 group-hover:text-slate-900"
+                  className="w-full text-left flex items-start gap-3 group-hover:text-slate-900 dark:text-slate-100"
                 >
                   <div className="w-1.5 h-1.5 rounded-full bg-brand-600 mt-1.5 shrink-0" />
                   <div className="flex-1 min-w-0">
-                    <div className="text-slate-900 text-sm font-medium truncate">{u.project}</div>
-                    <div className="text-xs text-slate-500 flex items-center gap-2 mt-0.5">
+                    <div className="text-slate-900 dark:text-slate-100 text-sm font-medium truncate">{u.project}</div>
+                    <div className="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-500 flex items-center gap-2 mt-0.5">
                       <span>{u.type}</span><span>·</span><span>{u.detail}</span>
                     </div>
                   </div>
-                  <span className="text-[10px] text-slate-400 font-mono flex items-center gap-1 shrink-0">
+                  <span className="text-[10px] text-slate-400 dark:text-slate-500 font-mono flex items-center gap-1 shrink-0">
                     <Clock className="w-3 h-3" /> {timeAgo(u.ts)}
                   </span>
                 </button>
@@ -218,11 +218,11 @@ export default function Home() {
         <div className="flex items-baseline justify-between mb-4">
           <div>
             <h2 className="font-display text-2xl font-medium tracking-tight">Featured reusable initiatives</h2>
-            <p className="text-sm text-slate-500 mt-1">High-leverage builds ready for new engagements</p>
+            <p className="text-sm text-slate-500 dark:text-slate-400 dark:text-slate-500 mt-1">High-leverage builds ready for new engagements</p>
           </div>
           <button
             onClick={() => navigate("/explore?reusable=true")}
-            className="text-sm text-brand-700 hover:text-brand-800 flex items-center gap-1"
+            className="text-sm text-brand-700 dark:text-brand-400 hover:text-brand-800 flex items-center gap-1"
             data-testid="see-all-featured"
           >
             See all <ArrowRight className="w-3.5 h-3.5" />
@@ -237,7 +237,7 @@ export default function Home() {
 
       {/* Onboarding block */}
       <section
-        className="relative border border-slate-200 rounded-sm overflow-hidden bg-brand-600 text-white"
+        className="relative border border-slate-200 dark:border-slate-800 rounded-sm overflow-hidden bg-brand-600 text-white"
         data-testid="onboarding-block"
       >
         <div
@@ -260,14 +260,14 @@ export default function Home() {
           <div className="flex flex-col gap-2">
             <button
               onClick={() => navigate("/onboarding")}
-              className="bg-white text-slate-900 text-sm font-medium px-5 h-10 rounded-sm hover:bg-brand-50 transition-colors flex items-center justify-center gap-2"
+              className="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 text-sm font-medium px-5 h-10 rounded-sm hover:bg-brand-50 dark:bg-brand-600/15 transition-colors flex items-center justify-center gap-2"
               data-testid="onboarding-start-button"
             >
               <BookOpen className="w-4 h-4" /> Start the guide
             </button>
             <button
               onClick={() => navigate("/leadership")}
-              className="border border-white/30 text-white text-sm font-medium px-5 h-10 rounded-sm hover:bg-white/10 transition-colors"
+              className="border border-white/30 text-white text-sm font-medium px-5 h-10 rounded-sm hover:bg-white dark:bg-slate-900/10 transition-colors"
               data-testid="leadership-view-button"
             >
               Leadership view

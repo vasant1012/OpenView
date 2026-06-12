@@ -77,13 +77,13 @@ export default function Assets() {
       <div className="flex items-baseline justify-between gap-4 flex-wrap">
         <div>
           <h1 className="font-display text-4xl font-light tracking-tighter">Asset Library</h1>
-          <p className="text-sm text-slate-500 mt-1">
+          <p className="text-sm text-slate-500 dark:text-slate-400 dark:text-slate-500 mt-1">
             {filtered.length} of {assets.length} assets
             {linkedProject && (
-              <> · linked to <span className="font-medium text-slate-700">{projectMap[linkedProject]}</span>
+              <> · linked to <span className="font-medium text-slate-700 dark:text-slate-300">{projectMap[linkedProject]}</span>
                 <button
                   onClick={() => setParams({})}
-                  className="text-brand-700 ml-2 hover:underline"
+                  className="text-brand-700 dark:text-brand-400 ml-2 hover:underline"
                   data-testid="clear-project-filter"
                 >Clear</button>
               </>
@@ -91,24 +91,24 @@ export default function Assets() {
           </p>
         </div>
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 dark:text-slate-500" />
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search assets…"
-            className="h-9 pl-9 pr-3 w-72 text-sm border border-slate-200 rounded-sm focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/15 bg-white"
+            className="h-9 pl-9 pr-3 w-72 text-sm border border-slate-200 dark:border-slate-800 rounded-sm focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/15 bg-white dark:bg-slate-900"
             data-testid="assets-search-input"
           />
         </div>
       </div>
 
       <Tabs value={tab} onValueChange={setTab}>
-        <TabsList className="bg-slate-100 rounded-sm">
+        <TabsList className="bg-slate-100 dark:bg-slate-800 rounded-sm">
           {["All", ...ASSET_TYPES].map((t) => (
             <TabsTrigger
               key={t}
               value={t}
-              className="rounded-sm data-[state=active]:bg-white data-[state=active]:text-slate-900 text-xs"
+              className="rounded-sm data-[state=active]:bg-white dark:bg-slate-900 data-[state=active]:text-slate-900 dark:text-slate-100 text-xs"
               data-testid={`tab-${t.toLowerCase().replace(/\s/g, "-")}`}
             >
               {t}
@@ -126,9 +126,9 @@ export default function Assets() {
         />
         <div data-testid="assets-results">
           {filtered.length === 0 ? (
-            <div className="border border-dashed border-slate-300 bg-white rounded-sm p-16 text-center">
+            <div className="border border-dashed border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 rounded-sm p-16 text-center">
               <div className="font-display text-xl">No assets match</div>
-              <p className="text-sm text-slate-500 mt-1">Adjust filters or change tab.</p>
+              <p className="text-sm text-slate-500 dark:text-slate-400 dark:text-slate-500 mt-1">Adjust filters or change tab.</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
