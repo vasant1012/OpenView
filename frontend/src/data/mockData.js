@@ -32,14 +32,54 @@ export const DEPLOYMENT = ["Cloud", "On-Premise", "Hybrid", "Edge"];
 export const ASSET_TYPES = ["Accelerator", "Demo", "Prompt Library", "Template", "Code"];
 
 const OWNERS = [
-  { name: "Aarav Mehta", initials: "AM" },
-  { name: "Priya Iyer", initials: "PI" },
-  { name: "Rohan Banerjee", initials: "RB" },
-  { name: "Sara Khan", initials: "SK" },
-  { name: "Lucas Wright", initials: "LW" },
-  { name: "Mei Tanaka", initials: "MT" },
-  { name: "Diego Alvarez", initials: "DA" },
-  { name: "Noor Siddiqui", initials: "NS" },
+  {
+    name: "Rajendra A",
+    initials: "RA",
+    designation: "Principal Data Scientist",
+    location: "Bangalore",
+  },
+  {
+    name: "Christoph Knoess",
+    initials: "CK",
+    designation: "Executive Vice President & Chief Revenue Officer – AI Business",
+    location: "Remote",
+  },
+  {
+    name: "Nikhil Prakash",
+    initials: "NP",
+    designation: "Associate Vice President - AI & Analytics",
+    location: "Santa Clara",
+  },
+  {
+    name: "Srijith S",
+    initials: "SS",
+    designation: "Principal Data Scientist",
+    location: "Santa Clara",
+  },
+  {
+    name: "Varadaraj Bhat Yekkar",
+    initials: "VY",
+    designation: "Director - Technology & Architecture",
+    location: "Bangalore",
+  },
+  {
+    name: "Harish Bekanahalli Nanjundappa",
+    initials: "HN",
+    designation: "Director - Technology & Architecture",
+    location: "Bangalore",
+  },
+  {
+    name: "Sudhindra Kulkarni",
+    initials: "SK",
+    designation: "Principal Architect",
+    location: "Bangalore",
+  },
+  {
+    name: "Rakesh Tiwari",
+    initials: "RT",
+    designation: "Director - Technology & Architecture",
+    location: "Bangalore",
+  },
 ];
 
 const pick = (arr, i) => arr[i % arr.length];
