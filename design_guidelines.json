@@ -1,0 +1,136 @@
+{
+  "project_name": "Tavant AI OpenView",
+  "theme_strategy": "Light Theme",
+  "archetype": "4 - Swiss & High-Contrast",
+  "design_philosophy": {
+    "emotion": "Authoritative, clear, structurally precise, and highly organized",
+    "core_principles": [
+      "Information Hierarchy & Progressive Disclosure",
+      "Function over Decoration - UI exists to surface data",
+      "Structural Borders - expose the skeleton of the layout"
+    ],
+    "anti_patterns_enforced": [
+      "No Teal (#1B93A4) or Purple (#9D4CDD) anywhere",
+      "No purple-blue generic AI gradients",
+      "No Inter or standard Sans for headings",
+      "No center-alignment for dense data or paragraphs",
+      "No heavy drop shadows (use borders and flat design)"
+    ]
+  },
+  "typography": {
+    "fonts": {
+      "headings": "Outfit, sans-serif",
+      "body": "IBM Plex Sans, sans-serif",
+      "data_mono": "JetBrains Mono, monospace"
+    },
+    "hierarchy": {
+      "h1": "text-4xl font-light tracking-tighter text-slate-900 leading-tight",
+      "h2": "text-2xl font-medium tracking-tight text-slate-900",
+      "h3": "text-xl font-medium text-slate-800",
+      "h4": "text-lg font-medium text-slate-800",
+      "body": "text-sm text-slate-600 leading-relaxed",
+      "body_large": "text-base text-slate-700 leading-relaxed",
+      "overline": "text-xs font-bold uppercase tracking-[0.2em] text-slate-500",
+      "data_metric": "text-4xl font-medium tracking-tight text-slate-900 font-mono"
+    }
+  },
+  "colors": {
+    "background": {
+      "app": "bg-slate-50",
+      "surface": "bg-white",
+      "surface_alt": "bg-slate-100"
+    },
+    "borders": {
+      "default": "border-slate-200",
+      "focus": "border-blue-600",
+      "subtle": "border-slate-100"
+    },
+    "text": {
+      "primary": "text-slate-900",
+      "secondary": "text-slate-500",
+      "tertiary": "text-slate-400",
+      "inverse": "text-white"
+    },
+    "brand_primary": {
+      "default": "bg-blue-600 text-white",
+      "hover": "hover:bg-blue-700 hover:text-white",
+      "active": "active:bg-blue-800"
+    },
+    "status": {
+      "success": "bg-emerald-50 text-emerald-700 border-emerald-200",
+      "warning": "bg-amber-50 text-amber-700 border-amber-200",
+      "error": "bg-red-50 text-red-700 border-red-200",
+      "info": "bg-blue-50 text-blue-700 border-blue-200"
+    },
+    "charts_recharts": [
+      "#2563EB",
+      "#334155",
+      "#94A3B8",
+      "#CBD5E1",
+      "#0F172A"
+    ]
+  },
+  "spacing_and_layout": {
+    "grid_system": "Control Room Grid Protocol",
+    "base_grid": "grid-cols-1 md:grid-cols-4 lg:grid-cols-6",
+    "gap": "gap-4 lg:gap-6",
+    "surfaces": {
+      "padding": "p-6",
+      "radius": "rounded-sm",
+      "borders": "border border-slate-200",
+      "shadows": "shadow-none hover:shadow-sm transition-all duration-200"
+    },
+    "alignment": "Mobile-first responsive. All dense content left-aligned. Optical alignment for icons inside buttons."
+  },
+  "components": {
+    "Navigation": "Solid background (bg-white), 1px bottom border (border-slate-200). Sticky top-0, z-50. Logo left, main links left-aligned next to logo, user profile right.",
+    "MetricCard": "Flat bg-white, 1px border. Overline label at top left. Huge Mono data metric at center. Green/Red trend indicator at bottom right. No shadow default.",
+    "ProjectCard": "Used for Initiative and Asset Grids. Strict rectangle (rounded-sm). Top section: Status badge (right) and Title (left). Middle section: concise description. Bottom section: Domain tags (Shadcn Badge) and Avatar. Hover state: -translate-y-[2px] and border-slate-300.",
+    "FilterPanel": "w-64 fixed width on desktop, collapsible on mobile. Dense Shadcn Checkboxes and Accordions. Left-aligned text.",
+    "DetailLayout": "Two-column bento layout. 70% left (Overview, Business Context, Delivery). 30% right (Status, Metadata, Team, Insights).",
+    "Charts": "Recharts ONLY. Sharp flat colors from charts_recharts array. Add custom tooltips with bg-white, border-slate-200, and text-slate-900. No drop shadows on bars.",
+    "Forms": "Shadcn UI forms. Sharp inputs (rounded-sm), clear labeling. Left-aligned labels."
+  },
+  "interactions_and_motion": {
+    "hover_states": "All interactive elements explicitly set hover text color (e.g., hover:text-blue-700). Cards get slight lift and shadow-sm.",
+    "focus_states": "High contrast ring: focus:ring-2 focus:ring-blue-600 focus:ring-offset-1 focus:outline-none.",
+    "transitions": "Use transition-all duration-200 ease-in-out for cards and buttons."
+  },
+  "accessibility_and_testing": {
+    "contrast": "Ensure minimum 4.5:1 for standard text. Never use transparent text or borders.",
+    "testing_attributes": "All interactive and key informational elements MUST include a data-testid attribute in kebab-case, role-based format (e.g., data-testid='submit-initiative-button', data-testid='metric-card-value')."
+  },
+  "media": {
+    "hero_abstract": {
+      "url": "https://images.pexels.com/photos/17483870/pexels-photo-17483870.png",
+      "description": "Abstract digital neural network for onboarding blocks or hero background",
+      "usage": "Use with heavy white overlay (bg-white/80) to maintain text contrast"
+    },
+    "network_abstract": {
+      "url": "https://images.pexels.com/photos/10325707/pexels-photo-10325707.png",
+      "description": "Vibrant orange network lines",
+      "usage": "Use as a thumbnail for featured AI discovery assets"
+    },
+    "office_team_1": {
+      "url": "https://images.pexels.com/photos/6804068/pexels-photo-6804068.jpeg",
+      "description": "Modern developers working",
+      "usage": "Thumbnail for collaborative initiatives or community block"
+    },
+    "office_team_2": {
+      "url": "https://images.pexels.com/photos/6805161/pexels-photo-6805161.jpeg",
+      "description": "Team meeting discussion",
+      "usage": "Thumbnail for business context or PM onboarding section"
+    }
+  },
+  "instructions_to_main_agent": [
+    "1. Initialize with React, Tailwind, and Shadcn. Override Shadcn default radius to '0.125rem' (rounded-sm) in tailwind.config.js.",
+    "2. Add Google Fonts 'Outfit', 'IBM Plex Sans', and 'JetBrains Mono' to index.html and configure in Tailwind theme.",
+    "3. Install libraries: `yarn add recharts lucide-react clsx tailwind-merge`.",
+    "4. Construct the Dashboard using pure HTML/Tailwind CSS Grid (Control Room style) for structure. Wrap Shadcn components inside these grid items.",
+    "5. Ensure Recharts visualizations use the specific HEX codes from the 'charts_recharts' array.",
+    "6. Build the 'FilterPanel' for the Explore Initiatives page using Shadcn Checkboxes and Accordions.",
+    "7. Do NOT use placeholder image URLs like 'via.placeholder.com'. Map the provided Pexels URLs in the 'media' object to corresponding sections.",
+    "8. MANDATORY: Apply 'data-testid' to every actionable element.",
+    "9. Use Lucide-react for all icons to maintain the sharp, consistent enterprise feel."
+  ]
+}
