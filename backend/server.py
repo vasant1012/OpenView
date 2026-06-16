@@ -1,7 +1,7 @@
 from fastapi import FastAPI, APIRouter
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
-from motor.motor_asyncio import AsyncIOMotorClient
+from tinydb import TinyDB
 import os
 import logging
 from pathlib import Path
@@ -14,10 +14,10 @@ from datetime import datetime, timezone
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
-# MongoDB connection
-mongo_url = os.environ['MONGO_URL']
-client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
+# TinyDB connection - local file-based database
+db_path = ROOT_DIR / 'data' / 'db.json'
+db_path.parent.mkdir(parents=True, exist_ok=True)
+db = TinyDB(str(db_path))
 
 # Create the main app without a prefix
 app = FastAPI()
@@ -47,17 +47,17 @@ async def create_status_check(input: StatusCheckCreate):
     status_dict = input.model_dump()
     status_obj = StatusCheck(**status_dict)
     
-    # Convert to dict and serialize datetime to ISO string for MongoDB
+    # Convert to dict for TinyDB storage
     doc = status_obj.model_dump()
     doc['timestamp'] = doc['timestamp'].isoformat()
     
-    _ = await db.status_checks.insert_one(doc)
+    db.insert(doc)
     return status_obj
 
 @api_router.get("/status", response_model=List[StatusCheck])
 async def get_status_checks():
-    # Exclude MongoDB's _id field from the query results
-    status_checks = await db.status_checks.find({}, {"_id": 0}).to_list(1000)
+    # Get all documents from TinyDB
+    status_checks = db.all()
     
     # Convert ISO string timestamps back to datetime objects
     for check in status_checks:
@@ -86,4 +86,4 @@ logger = logging.getLogger(__name__)
 
 @app.on_event("shutdown")
 async def shutdown_db_client():
-    client.close()
+    db.close()

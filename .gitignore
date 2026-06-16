@@ -19,6 +19,11 @@ node_modules/
 # Testing
 /coverage
 
+# Python
+__pycache__/
+*.pyc
+.venv/
+
 # Next.js
 /.next/
 /out/

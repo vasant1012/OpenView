@@ -1,0 +1,14 @@
+{
+    "_default": {
+        "1": {
+            "id": "fe4926b0-041a-4617-9ee6-efa247d6fe1c",
+            "client_name": "test_client",
+            "timestamp": "2026-06-16T14:17:05.868344+00:00"
+        },
+        "2": {
+            "id": "2e9e9382-027f-4f6a-86bc-b3d7374ed27a",
+            "client_name": "my_app",
+            "timestamp": "2026-06-16T14:20:50.882093+00:00"
+        }
+    }
+}
